@@ -47,9 +47,9 @@
   .cal-top h2{font-family:'Instrument Serif',serif;font-size:14px;font-weight:400;}
   .cal-line{flex:1;height:1px;background:var(--bd);}
   .cal-disclaimer{text-align:center;font-family:'Geist Mono',monospace;font-size:10px;color:var(--txm);letter-spacing:0.5px;}
-  .cal-body{display:flex;flex-direction:column;gap:6px;flex:1;overflow:hidden;}
-  .cal-legend{display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;padding:4px 8px;}
-  .legend-item{display:flex;align-items:center;gap:4px;padding:3px 8px;background:var(--bgc);border:1px solid var(--glb);border-radius:6px;font-size:10px;color:var(--txd);white-space:nowrap;}
+  
+  .cal-legend{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;padding:4px 0;}
+  .legend-item{display:flex;align-items:center;gap:4px;font-size:10px;white-space:nowrap;}
   .legend-dot{width:6px;height:6px;border-radius:2px;flex-shrink:0;}
   .cal-embed{border-radius:var(--r);flex:1;overflow:hidden;border:1px solid var(--glb);background:rgba(255,255,255,0.02);}
   .cal-embed iframe{width:100%;height:100%;border:0;filter:invert(0.88) hue-rotate(180deg) saturate(0.7);}
@@ -104,8 +104,7 @@
 <div class="cal-area">
   <div class="cal-top"><div class="cal-line"></div><h2>Finance Calendar</h2><div class="cal-line"></div></div>
   <div class="cal-disclaimer">All Financial systems close 9am (Pacific) on the day of processing</div>
-  <div class="cal-body">
-    <div class="cal-legend">
+  <div class="cal-legend">
       <div class="legend-item"><div class="legend-dot" style="background:#4285f4;"></div>Payroll Changes Due</div>
       <div class="legend-item"><div class="legend-dot" style="background:#a78bfa;"></div>Payroll Due Date</div>
       <div class="legend-item"><div class="legend-dot" style="background:#e2e8f0;"></div>Pay Date &amp; Period End</div>
@@ -114,7 +113,6 @@
       <div class="legend-item"><div class="legend-dot" style="background:#f59e0b;"></div>Expense &amp; Commission Due</div>
     </div>
     <div class="cal-embed"><iframe src="https://calendar.google.com/calendar/embed?src=PLACEHOLDER_CALENDAR_ID&ctz=America/Los_Angeles&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0" title="Finance Calendar"></iframe></div>
-  </div>
 </div>
 <footer>Copyright &copy; 2025 <span>Aviz Networks Inc</span></footer>
 </div>

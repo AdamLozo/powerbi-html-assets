@@ -37,9 +37,9 @@
   .cal-top h2{font-family:'Fraunces',serif;font-size:14px;font-weight:600;}
   .cal-line{flex:1;height:1px;background:var(--bdl);}
   .cal-disclaimer{text-align:center;color:var(--mu);font-size:10px;font-style:italic;}
-  .cal-body{display:flex;flex-direction:column;gap:6px;flex:1;overflow:hidden;}
-  .cal-legend{display:flex;flex-wrap:wrap;gap:4px 12px;justify-content:center;padding:4px 8px;}
-  .legend-item{display:flex;align-items:center;gap:4px;padding:3px 8px;background:var(--bgc);border-radius:6px;border:1px solid var(--bdl);font-size:10px;font-weight:500;color:var(--gr);white-space:nowrap;}
+  
+  .cal-legend{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;padding:4px 0;}
+  .legend-item{display:flex;align-items:center;gap:4px;font-size:10px;white-space:nowrap;}
   .legend-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
   .cal-embed{border-radius:var(--r);flex:1;overflow:hidden;border:1px solid var(--bd);background:var(--bgc);}
   .cal-embed iframe{width:100%;height:100%;border:0;}
@@ -92,8 +92,7 @@
 <div class="cal-area">
   <div class="cal-top"><div class="cal-line"></div><h2>Finance Calendar</h2><div class="cal-line"></div></div>
   <div class="cal-disclaimer">All Financial systems close 9am (Pacific) on the day of processing</div>
-  <div class="cal-body">
-    <div class="cal-legend">
+  <div class="cal-legend">
       <div class="legend-item"><div class="legend-dot" style="background:#4285f4;"></div>Payroll Changes Due</div>
       <div class="legend-item"><div class="legend-dot" style="background:#a142f4;"></div>Payroll Due Date</div>
       <div class="legend-item"><div class="legend-dot" style="background:#2c2c2c;"></div>Pay Date &amp; Period End</div>
@@ -102,7 +101,6 @@
       <div class="legend-item"><div class="legend-dot" style="background:#e8923b;"></div>Expense &amp; Commission Due</div>
     </div>
     <div class="cal-embed"><iframe src="https://calendar.google.com/calendar/embed?src=PLACEHOLDER_CALENDAR_ID&ctz=America/Los_Angeles&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0" title="Finance Calendar"></iframe></div>
-  </div>
 </div>
 <footer>Copyright &copy; 2025 <span>Aviz Networks Inc</span></footer>
 </div>
