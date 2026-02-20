@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aviz Finance — Command Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e17; --bg-card: rgba(255,255,255,0.04); --bg-card-hover: rgba(255,255,255,0.07);
+    --glass: rgba(255,255,255,0.06); --glass-border: rgba(255,255,255,0.08);
+    --accent: #00d4aa; --accent-dim: rgba(0,212,170,0.15); --accent-glow: rgba(0,212,170,0.25);
+    --purple: #a78bfa; --purple-dim: rgba(167,139,250,0.12);
+    --text: #e8edf5; --text-dim: rgba(255,255,255,0.5); --text-muted: rgba(255,255,255,0.35);
+    --border: rgba(255,255,255,0.06); --white: #ffffff;
+    --r: 12px; --r-sm: 8px; --tr: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100vh; overflow: hidden; font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+  /* Aurora background */
+  .aurora {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden;
+  }
+  .aurora-orb {
+    position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.35;
+    animation: auroraFloat 20s ease-in-out infinite;
+  }
+  .aurora-orb:nth-child(1) { width: 600px; height: 600px; background: radial-gradient(circle, #00d4aa, transparent 70%); top: -20%; left: -10%; animation-delay: 0s; }
+  .aurora-orb:nth-child(2) { width: 500px; height: 500px; background: radial-gradient(circle, #a78bfa, transparent 70%); bottom: -15%; right: -5%; animation-delay: -7s; }
+  .aurora-orb:nth-child(3) { width: 400px; height: 400px; background: radial-gradient(circle, #3b82f6, transparent 70%); top: 30%; right: 20%; animation-delay: -14s; opacity: 0.2; }
+  @keyframes auroraFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(30px, -20px) scale(1.05); }
+    66% { transform: translate(-20px, 15px) scale(0.95); }
+  }
+
+  /* Grid noise overlay */
+  .noise {
+    position: fixed; inset: 0; z-index: 1;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .page { position: relative; z-index: 2; display: grid; grid-template-rows: 48px 1fr 20px; height: 100vh; overflow: hidden; }
+
+  /* ─── NAV ─── */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px;
+    background: rgba(10,14,23,0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-left { display: flex; align-items: center; gap: 12px; }
+  .nav-badge {
+    display: flex; align-items: center; gap: 6px;
+    padding: 4px 12px 4px 6px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(0,212,170,0.2);
+    border-radius: 100px;
+  }
+  .nav-pulse {
+    width: 8px; height: 8px; background: var(--accent); border-radius: 50%;
+    box-shadow: 0 0 8px var(--accent-glow);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  .nav-badge-text { font-family: 'Geist Mono', monospace; font-size: 10px; font-weight: 500; color: var(--accent); letter-spacing: 1px; text-transform: uppercase; }
+  .nav-title { font-family: 'Instrument Serif', serif; font-size: 18px; color: var(--text); font-weight: 400; }
+  .nav-title em { font-style: italic; color: var(--accent); }
+  .nav-links { display: flex; gap: 6px; list-style: none; }
+  .nav-links a {
+    color: var(--text-dim); text-decoration: none; font-size: 11px; font-weight: 500;
+    padding: 5px 12px; border-radius: 6px; transition: all var(--tr);
+    border: 1px solid transparent;
+  }
+  .nav-links a:hover { color: var(--text); background: var(--glass); border-color: var(--glass-border); }
+
+  /* ─── MAIN ─── */
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 10px;
+    padding: 14px 20px 10px;
+    overflow: hidden;
+  }
+
+  /* Hero spans full width */
+  .hero-bar {
+    grid-column: 1 / -1;
+    display: flex; align-items: center; justify-content: center; gap: 20px;
+    padding: 10px 24px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--r);
+  }
+  .hero-bar h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px; font-weight: 400; color: var(--text);
+  }
+  .hero-bar h1 em { font-style: italic; color: var(--accent); }
+  .hero-sep { width: 1px; height: 20px; background: var(--border); }
+  .hero-bar p { font-size: 11px; color: var(--text-dim); font-weight: 400; }
+  .hero-stat {
+    display: flex; align-items: center; gap: 6px;
+    padding: 4px 10px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(0,212,170,0.15);
+    border-radius: 6px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 10px; color: var(--accent);
+  }
+
+  /* ─── LEFT COL ─── */
+  .left { display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+
+  .action-row { display: flex; gap: 8px; }
+  .action-card {
+    flex: 1;
+    background: var(--bg-card);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--r);
+    padding: 14px 12px 12px;
+    cursor: pointer;
+    transition: all var(--tr);
+    position: relative;
+    overflow: hidden;
+  }
+  .action-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--purple));
+    opacity: 0; transition: opacity var(--tr);
+  }
+  .action-card:hover { background: var(--bg-card-hover); border-color: rgba(0,212,170,0.2); }
+  .action-card:hover::after { opacity: 1; }
+  .action-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .action-icon {
+    width: 32px; height: 32px;
+    background: var(--accent-dim);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .action-icon svg { width: 16px; height: 16px; stroke: var(--accent); stroke-width: 1.5; fill: none; }
+  .action-card:nth-child(2) .action-icon { background: var(--purple-dim); }
+  .action-card:nth-child(2) .action-icon svg { stroke: var(--purple); }
+  .action-card:nth-child(3) .action-icon { background: rgba(59,130,246,0.12); }
+  .action-card:nth-child(3) .action-icon svg { stroke: #60a5fa; }
+  .action-tag {
+    font-family: 'Geist Mono', monospace;
+    font-size: 8px; color: var(--text-muted);
+    letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .action-card h3 { font-size: 12px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .action-card p { font-size: 9px; color: var(--text-dim); }
+
+  /* Links */
+  .links-area { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; flex: 1; overflow-y: auto; }
+  .links-area::-webkit-scrollbar { width: 4px; }
+  .links-area::-webkit-scrollbar-track { background: transparent; }
+  .links-area::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .lk {
+    background: var(--bg-card); border: 1px solid var(--glass-border);
+    border-radius: var(--r-sm); padding: 8px 10px;
+    transition: all var(--tr);
+  }
+  .lk:hover { background: var(--bg-card-hover); border-color: var(--glass-border); }
+  .lk-title {
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px; font-weight: 600; color: var(--text-dim);
+    letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 6px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .lk-title::before {
+    content: ''; width: 4px; height: 4px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 6px var(--accent-glow);
+  }
+  .lk-btns { display: flex; flex-wrap: wrap; gap: 4px; }
+  .lk-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 4px 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-dim);
+    font-size: 10px; font-weight: 500;
+    text-decoration: none;
+    transition: all var(--tr);
+  }
+  .lk-btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .lk-btn svg { width: 10px; height: 10px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+  /* ─── RIGHT: Calendar ─── */
+  .right { display: flex; flex-direction: column; gap: 8px; overflow: hidden; }
+  .cal-label {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .cal-label h2 {
+    font-family: 'Instrument Serif', serif; font-size: 14px; font-weight: 400; color: var(--text);
+  }
+  .cal-label-line { flex: 1; height: 1px; background: var(--border); }
+  .cal-note {
+    text-align: center; font-family: 'Geist Mono', monospace;
+    font-size: 8px; color: var(--text-muted); letter-spacing: 0.5px;
+  }
+  .cal-content { display: flex; gap: 8px; flex: 1; overflow: hidden; }
+  .cal-legend {
+    display: flex; flex-direction: column; gap: 3px; min-width: 125px;
+  }
+  .cal-leg {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    font-size: 9px; color: var(--text-dim);
+  }
+  .cal-pip { width: 6px; height: 6px; border-radius: 2px; flex-shrink: 0; }
+  .cal-frame {
+    flex: 1;
+    border-radius: var(--r);
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    background: rgba(255,255,255,0.02);
+  }
+  .cal-frame iframe { width: 100%; height: 100%; border: 0; filter: invert(0.88) hue-rotate(180deg) saturate(0.7); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    font-family: 'Geist Mono', monospace;
+    font-size: 9px; color: var(--text-muted);
+    letter-spacing: 1px;
+    border-top: 1px solid var(--border);
+    background: rgba(10,14,23,0.6);
+  }
+  footer span { color: var(--accent); }
+  .footer-dot { width: 3px; height: 3px; background: var(--accent); border-radius: 50%; }
+
+  /* ─── MODAL ─── */
+  .modal-bg {
+    display: none; position: fixed; inset: 0;
+    background: rgba(10,14,23,0.7);
+    backdrop-filter: blur(12px);
+    z-index: 200; align-items: center; justify-content: center;
+  }
+  .modal-bg.on { display: flex; }
+  .mdl {
+    background: #141922;
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    width: 90%; max-width: 620px; max-height: 75vh; overflow-y: auto;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 60px rgba(0,212,170,0.05);
+    animation: mSlide 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .mdl-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 22px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .mdl-head h2 { font-family: 'Instrument Serif', serif; font-size: 20px; font-weight: 400; }
+  .mdl-x {
+    width: 28px; height: 28px;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    background: var(--glass);
+    cursor: pointer; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all var(--tr);
+    color: var(--text-dim);
+  }
+  .mdl-x:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .mdl-body { padding: 16px 22px 22px; }
+
+  /* Tabs */
+  .m-tabs {
+    display: flex; gap: 3px; margin-bottom: 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 3px;
+  }
+  .m-tab {
+    flex: 1; padding: 7px; font-size: 11px; font-weight: 600;
+    color: var(--text-muted); border: none; background: none;
+    border-radius: 6px; cursor: pointer; transition: all var(--tr);
+  }
+  .m-tab.active { background: var(--accent-dim); color: var(--accent); }
+  .m-tab-panel { display: none; } .m-tab-panel.active { display: block; }
+
+  .pol-item { border-bottom: 1px solid var(--border); padding: 8px 0; }
+  .pol-item:last-child { border-bottom: none; }
+  .pol-hd {
+    font-weight: 600; font-size: 13px; cursor: pointer;
+    display: flex; align-items: center; gap: 6px; color: var(--text);
+  }
+  .pol-ch {
+    width: 16px; height: 16px;
+    background: var(--glass);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--accent);
+    transition: transform var(--tr); flex-shrink: 0;
+  }
+  .pol-item.open .pol-ch { transform: rotate(90deg); }
+  .pol-bd { display: none; padding: 6px 0 2px 22px; color: var(--text-dim); font-size: 12px; line-height: 1.6; }
+  .pol-item.open .pol-bd { display: block; }
+
+  .step-row { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .step-row:last-child { border-bottom: none; }
+  .step-n {
+    width: 26px; height: 26px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(0,212,170,0.2);
+    color: var(--accent);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Geist Mono', monospace;
+    font-weight: 600; font-size: 11px; flex-shrink: 0;
+  }
+  .step-row h4 { font-size: 12px; font-weight: 600; margin-bottom: 1px; }
+  .step-row p { font-size: 11px; color: var(--text-dim); }
+  .step-a { display: inline-block; margin-top: 3px; color: var(--accent); font-weight: 600; font-size: 10px; text-decoration: none; font-family: 'Geist Mono', monospace; letter-spacing: 0.5px; }
+
+  .dash-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 12px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 8px; margin-bottom: 5px;
+    transition: all var(--tr);
+  }
+  .dash-row:hover { background: var(--accent-dim); border-color: rgba(0,212,170,0.15); }
+  .dash-row span { font-weight: 500; font-size: 12px; }
+  .dash-row a { color: var(--accent); text-decoration: none; font-weight: 600; font-size: 11px; font-family: 'Geist Mono', monospace; }
+
+  @keyframes mSlide { from { opacity: 0; transform: translateY(20px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+</style>
+</head>
+<body>
+
+<div class="aurora">
+  <div class="aurora-orb"></div>
+  <div class="aurora-orb"></div>
+  <div class="aurora-orb"></div>
+</div>
+<div class="noise"></div>
+
+<div class="page">
+
+<nav>
+  <div class="nav-left">
+    <div class="nav-badge"><div class="nav-pulse"></div><span class="nav-badge-text">Live</span></div>
+    <div class="nav-title">Aviz <em>Finance</em></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Our Team</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Departments</a></li>
+  </ul>
+</nav>
+
+<div class="main">
+  <!-- HERO BAR -->
+  <div class="hero-bar">
+    <h1>Welcome to Aviz <em>Finance</em></h1>
+    <div class="hero-sep"></div>
+    <p>Driving Transparency, Efficiency & Growth</p>
+    <div class="hero-sep"></div>
+    <div class="hero-stat">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      FEB 2026
+    </div>
+  </div>
+
+  <!-- LEFT -->
+  <div class="left">
+    <div class="action-row">
+      <div class="action-card" onclick="openM('q2o')">
+        <div class="action-top">
+          <div class="action-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="8" r="2"/><circle cx="20" cy="8" r="2"/><circle cx="4" cy="16" r="2"/><circle cx="20" cy="16" r="2"/><line x1="6" y1="8" x2="9" y2="10"/><line x1="18" y1="8" x2="15" y2="10"/><line x1="6" y1="16" x2="9" y2="14"/><line x1="18" y1="16" x2="15" y2="14"/></svg></div>
+          <span class="action-tag">Process</span>
+        </div>
+        <h3>Quote to Order</h3>
+        <p>End-to-end workflow</p>
+      </div>
+      <div class="action-card" onclick="openM('dash')">
+        <div class="action-top">
+          <div class="action-icon"><svg viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="6" width="4" height="14" rx="1"/><rect x="17" y="2" width="4" height="18" rx="1"/></svg></div>
+          <span class="action-tag">Analytics</span>
+        </div>
+        <h3>Dashboards</h3>
+        <p>Power BI reports</p>
+      </div>
+      <div class="action-card" onclick="openM('pol')">
+        <div class="action-top">
+          <div class="action-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg></div>
+          <span class="action-tag">Compliance</span>
+        </div>
+        <h3>Policies</h3>
+        <p>HR &amp; Finance</p>
+      </div>
+    </div>
+
+    <div class="links-area">
+      <div class="lk"><div class="lk-title">Finance Dashboard</div><div class="lk-btns"><a href="#PLACEHOLDER_FINANCE_BI" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M7 14l3-3 3 3 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>Finance BI</a><a href="#PLACEHOLDER_HUBSPOT_BI" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M7 14l3-3 3 3 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>HubSpot BI</a></div></div>
+      <div class="lk"><div class="lk-title">CPQ</div><div class="lk-btns"><a href="#PLACEHOLDER_CUSTOMER_PO" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Customer PO</a><a href="#PLACEHOLDER_QUOTE_FORM" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Quote Form</a></div></div>
+      <div class="lk"><div class="lk-title">Submit Expense</div><div class="lk-btns"><a href="#PLACEHOLDER_BREX_EXPENSE" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Brex</a><a href="#PLACEHOLDER_KEKA_EXPENSE" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Keka</a></div></div>
+      <div class="lk"><div class="lk-title">Corporate Cards</div><div class="lk-btns"><a href="#PLACEHOLDER_BREX_CARDS" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Brex</a></div></div>
+      <div class="lk"><div class="lk-title">Payroll Portal</div><div class="lk-btns"><a href="#PLACEHOLDER_TRINET" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>TriNet</a><a href="#PLACEHOLDER_KEKA_PAYROLL" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Keka</a></div></div>
+      <div class="lk"><div class="lk-title">Invoice &amp; Helpdesk</div><div class="lk-btns"><a href="mailto:finance@aviznetworks.com" class="lk-btn"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>Email</a><a href="#PLACEHOLDER_SLACK" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M15 12a3 3 0 1 1 0-6"/><path d="M9 18a3 3 0 1 1 0-6"/></svg>Slack</a></div></div>
+    </div>
+  </div>
+
+  <!-- RIGHT: Calendar -->
+  <div class="right">
+    <div class="cal-label">
+      <div class="cal-label-line"></div>
+      <h2>Finance Calendar</h2>
+      <div class="cal-label-line"></div>
+    </div>
+    <div class="cal-note">All financial systems close 9 AM Pacific on the day of processing</div>
+    <div class="cal-content">
+      <div class="cal-legend">
+        <div class="cal-leg"><div class="cal-pip" style="background:#4285f4;"></div>Payroll Changes Due</div>
+        <div class="cal-leg"><div class="cal-pip" style="background:#a78bfa;"></div>Payroll Due Date</div>
+        <div class="cal-leg"><div class="cal-pip" style="background:#e2e8f0;"></div>Pay Date &amp; Period End</div>
+        <div class="cal-leg"><div class="cal-pip" style="background:#00d4aa;"></div>Pay Date</div>
+        <div class="cal-leg"><div class="cal-pip" style="background:#22c55e;"></div>Pay Period End Date</div>
+        <div class="cal-leg"><div class="cal-pip" style="background:#f59e0b;"></div>Expense &amp; Commission Due</div>
+      </div>
+      <div class="cal-frame"><iframe src="https://calendar.google.com/calendar/embed?src=PLACEHOLDER_CALENDAR_ID&ctz=America/Los_Angeles&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0" title="Finance Calendar"></iframe></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-dot"></div>
+  Copyright &copy; 2025 <span>Aviz Networks Inc</span>
+  <div class="footer-dot"></div>
+</footer>
+
+</div>
+
+<!-- MODALS -->
+<div class="modal-bg" id="m-q2o"><div class="mdl"><div class="mdl-head"><h2>Quote to Order Process</h2><button class="mdl-x" onclick="closeM()">&times;</button></div><div class="mdl-body">
+  <div class="step-row"><div class="step-n">01</div><div><h4>Submit Quote Request</h4><p>Complete the form with customer details and product requirements.</p><a href="#PLACEHOLDER_QUOTE_FORM" class="step-a" target="_blank">OPEN FORM →</a></div></div>
+  <div class="step-row"><div class="step-n">02</div><div><h4>Finance Review &amp; Approval</h4><p>Pricing, terms, and compliance review. 1–2 business days.</p></div></div>
+  <div class="step-row"><div class="step-n">03</div><div><h4>Customer PO Submission</h4><p>Submit the customer purchase order for processing.</p><a href="#PLACEHOLDER_CUSTOMER_PO" class="step-a" target="_blank">SUBMIT PO →</a></div></div>
+  <div class="step-row"><div class="step-n">04</div><div><h4>Order Fulfillment</h4><p>Order entered and fulfillment begins.</p><a href="#PLACEHOLDER_FINANCE_BI" class="step-a" target="_blank">VIEW DASHBOARD →</a></div></div>
+  <div class="step-row"><div class="step-n">05</div><div><h4>Invoice &amp; Revenue Recognition</h4><p>Invoice generated, revenue recognized per ASC 606.</p></div></div>
+</div></div></div>
+
+<div class="modal-bg" id="m-dash"><div class="mdl"><div class="mdl-head"><h2>Reporting Dashboards</h2><button class="mdl-x" onclick="closeM()">&times;</button></div><div class="mdl-body">
+  <div class="dash-row"><span>Finance Overview</span><a href="#PLACEHOLDER_FINANCE_BI" target="_blank">OPEN →</a></div>
+  <div class="dash-row"><span>ARR &amp; Revenue Report</span><a href="#PLACEHOLDER_ARR_REPORT" target="_blank">OPEN →</a></div>
+  <div class="dash-row"><span>Cash Flow Analysis</span><a href="#PLACEHOLDER_CASHFLOW" target="_blank">OPEN →</a></div>
+  <div class="dash-row"><span>Bookings Dashboard</span><a href="#PLACEHOLDER_BOOKINGS" target="_blank">OPEN →</a></div>
+  <div class="dash-row"><span>HubSpot Analytics</span><a href="#PLACEHOLDER_HUBSPOT_BI" target="_blank">OPEN →</a></div>
+  <div class="dash-row"><span>HR &amp; Headcount Report</span><a href="#PLACEHOLDER_HR_REPORT" target="_blank">OPEN →</a></div>
+</div></div></div>
+
+<div class="modal-bg" id="m-pol"><div class="mdl"><div class="mdl-head"><h2>Policies</h2><button class="mdl-x" onclick="closeM()">&times;</button></div><div class="mdl-body">
+  <div class="m-tabs"><button class="m-tab active" onclick="mTab(this,'hr')">HR Policies</button><button class="m-tab" onclick="mTab(this,'fin')">Finance Policies</button></div>
+  <div class="m-tab-panel active" id="hr">
+    <div class="pol-item" onclick="this.classList.toggle('open')"><div class="pol-hd"><div class="pol-ch">›</div>Paid Time Off (PTO)</div><div class="pol-bd">Eligible from hire date. Accrual based on tenure. Request via Keka two weeks in advance.</div></div>
+    <div class="pol-item" onclick="this.classList.toggle('open')"><div class="pol-hd"><div class="pol-ch">›</div>Remote Work Policy</div><div class="pol-bd">Flexible hybrid. Core hours 9 AM – 3 PM Pacific. Stable internet required.</div></div>
+    <div class="pol-item" onclick="this.classList.toggle('open')"><div class="pol-hd"><div class="pol-ch">›</div>Code of Conduct</div><div class="pol-bd">Professionalism, integrity, respect. Maintain confidentiality, avoid conflicts of interest.</div></div>
+    <div class="pol-item" onclick="this.classList.toggle('open')"><div class="pol-hd"><div class="pol-ch">›</div>Benefits Enrollment</div><div class="pol-bd">30 days from start. Open enrollment November. Medical, dental, vision, 401(k), life insurance.</div></div>
+  </div>
+  <div class="m-tab-panel" id="fin">
+    <div class="pol-item" onclick="this.classList.toggle('open')"><div class="pol-hd"><div class="pol-ch">›</div>Expense Reimbursement</div><div class="pol-bd">Submit within 30 days via Brex/Keka. Receipts over $25. Reimbursed within 5 business days.</div></div>
+    <div class="pol-item" onclick="this.classList.toggle('open')"><div class="pol-hd"><div class="pol-ch">›</div>Travel Policy</div><div class="pol-bd">Pre-approved by manager/VP. Economy domestic. Hotels max $250/night. Per diem $75/day.</div></div>
+    <div class="pol-item" onclick="this.classList.toggle('open')"><div class="pol-hd"><div class="pol-ch">›</div>Corporate Card Usage</div><div class="pol-bd">Brex for business only. No personal use. Receipts within 7 days.</div></div>
+    <div class="pol-item" onclick="this.classList.toggle('open')"><div class="pol-hd"><div class="pol-ch">›</div>Revenue Recognition</div><div class="pol-bd">ASC 606. Subscription ratably. Services as delivered.</div></div>
+  </div>
+</div></div></div>
+
+<script>
+function openM(id){closeM();document.getElementById('m-'+id).classList.add('on');}
+function closeM(){document.querySelectorAll('.modal-bg').forEach(m=>m.classList.remove('on'));}
+document.querySelectorAll('.modal-bg').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)closeM();}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+function mTab(btn,id){btn.closest('.mdl-body').querySelectorAll('.m-tab').forEach(t=>t.classList.remove('active'));btn.closest('.mdl-body').querySelectorAll('.m-tab-panel').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+</script>
+</body>
+</html>
