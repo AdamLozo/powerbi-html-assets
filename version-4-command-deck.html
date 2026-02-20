@@ -117,54 +117,76 @@
 <footer>Copyright &copy; 2025 <span>Aviz Networks Inc</span></footer>
 </div>
 
-<div class="mo" id="m-q2o"><div class="md"><div class="md-h"><h2>Quote to Order Process</h2><button class="md-x" onclick="closeM()">&times;</button></div><div class="md-b">
-  <div class="q2s"><div class="q2n">1</div><div><h4>Submit Quote Request</h4><p>Complete form with customer details.</p><a href="#PLACEHOLDER_QUOTE_FORM" class="q2a" target="_blank">Open Form →</a></div></div>
-  <div class="q2s"><div class="q2n">2</div><div><h4>Finance Review &amp; Approval</h4><p>Pricing, terms, compliance. 1–2 business days.</p></div></div>
-  <div class="q2s"><div class="q2n">3</div><div><h4>Customer PO Submission</h4><p>Submit customer purchase order.</p><a href="#PLACEHOLDER_CUSTOMER_PO" class="q2a" target="_blank">Submit PO →</a></div></div>
-  <div class="q2s"><div class="q2n">4</div><div><h4>Order Fulfillment</h4><p>Order entered, fulfillment begins.</p><a href="#PLACEHOLDER_FINANCE_BI" class="q2a" target="_blank">Dashboard →</a></div></div>
-  <div class="q2s"><div class="q2n">5</div><div><h4>Invoice &amp; Revenue Recognition</h4><p>Invoice generated, revenue recognized.</p></div></div>
+<div class="mo" id="m-q2o"><div class="md"><div class="md-h"><h2>Quote to Order — Sales Departments</h2><button class="md-x" onclick="closeM()">&times;</button></div><div class="md-b">
+  <div class="md-tabs">
+    <button class="md-tab active" onclick="sTab(this,'ent')">Enterprise</button>
+    <button class="md-tab" onclick="sTab(this,'str')">Strategic</button>
+    <button class="md-tab" onclick="sTab(this,'jpn')">Japan</button>
+    <button class="md-tab" onclick="sTab(this,'oth')">Other</button>
+  </div>
+  <div class="tc active" id="ent">
+    <div class="dr"><span>Aaron Glass</span><a href="https://docs.google.com/spreadsheets/d/1f9tnNPKJMheUUXUlUkN-6hfzkE_-Jg-VIlyhV8tkScI/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <div class="dr"><span>Craig Schaefer</span><a href="https://docs.google.com/spreadsheets/d/1lJXg2CyTT--rG73oF1fRpJKkvTZck8tUJ-DZ4HR4l_E/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <div class="dr"><span>David Gridley</span><a href="https://docs.google.com/spreadsheets/d/15NeaRTGlLUGuWUVkvvy8IxXlWIg1VtZsOWSUm_ch_G0/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <div class="dr"><span>Hiroyuki Saki</span><a href="https://docs.google.com/spreadsheets/d/1In-uUbNutFZsmNynp6Dw5Hfq7QhY6RUZ0KSy7PPgurc/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <div class="dr"><span>Neal Trieber</span><a href="https://docs.google.com/spreadsheets/d/1eCb1qeRwGLFwTspX9dsDUnSOSsBetVI7rctmpwfV640/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <div class="dr"><span>Spencer Bernstein</span><a href="https://docs.google.com/spreadsheets/d/1orz02z19UYegY_kLyYt2HvY1d4giO4l_oedmjBCBBb0/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <div class="dr"><span>Tim Melvin</span><a href="https://docs.google.com/spreadsheets/d/1C8qdAo_QH_v8bQexzWe3M3QXd7z9QUFD0xO87dTY6SE/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+  </div>
+  <div class="tc" id="str">
+    <div class="dr"><span>Amit Tomer</span><a href="https://docs.google.com/spreadsheets/d/1BarbVBPLkyXrz9rbm2VI65N6wXmsEnrgxSCCFBSSemA/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <div class="dr"><span>Max White</span><a href="https://drive.google.com/drive/folders/1CahWgMPRY1Hg1qiWXqBherVXVzcFQMUJ" target="_blank">Open &rarr;</a></div>
+  </div>
+  <div class="tc" id="jpn">
+    <div class="dr"><span>Makoto Watanabe</span><a href="https://docs.google.com/spreadsheets/d/1Wy2KURnkpbN_PlJfbR24n1j6qzaF_0VaG3o1SrfpwjY/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <div class="dr"><span>Takeshi Yuasa</span><a href="https://docs.google.com/spreadsheets/d/1wRNnJta3c674RSRY3D5Ppm0fl1VnKiavStZgozbq-1g/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <div class="dr"><span>Wataru Kumagai</span><a href="https://docs.google.com/spreadsheets/d/1sN9E3hfYZqPoLJIBtRuDSqjll3ReysaNBXFLQ0V5dwQ/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+  </div>
+  <div class="tc" id="oth">
+    <p style="font-size:11px;color:inherit;opacity:0.6;margin-bottom:6px;font-weight:600;">CEO</p>
+    <div class="dr"><span>Vishal Shukla</span><a href="https://docs.google.com/spreadsheets/d/1N38jIENMaprX6HgSDL2ZTCULD0J2DuRwelLETz8qH1g/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <p style="font-size:11px;color:inherit;opacity:0.6;margin:8px 0 6px;font-weight:600;">Product Sales</p>
+    <div class="dr"><span>Cody McCain</span><a href="https://docs.google.com/spreadsheets/d/1mNe0VCNXA6V0qbyqNyj27V1ot4gLWjhwxKwvWcG1grA/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <div class="dr"><span>Thomas Scheibe</span><a href="https://docs.google.com/spreadsheets/d/184rv0Sn0UmXQRJgOAye1O9vBIW4_ZRx6OzncsXfyHZo/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+    <p style="font-size:11px;color:inherit;opacity:0.6;margin:8px 0 6px;font-weight:600;">Customer Success</p>
+    <div class="dr"><span>Khurram Khani</span><a href="https://docs.google.com/spreadsheets/d/1AIt-GK9YKdAqWW191n2F6wYV9JBfFl0MQvYJn7NGA1w/edit?usp=sharing" target="_blank">Open &rarr;</a></div>
+  </div>
 </div></div></div>
 <div class="mo" id="m-dash"><div class="md"><div class="md-h"><h2>Reporting Dashboards</h2><button class="md-x" onclick="closeM()">&times;</button></div><div class="md-b">
-  <div class="dr"><span>Finance Overview</span><a href="#PLACEHOLDER_FINANCE_BI" target="_blank">Open →</a></div>
-  <div class="dr"><span>ARR &amp; Revenue Report</span><a href="#PLACEHOLDER_ARR_REPORT" target="_blank">Open →</a></div>
-  <div class="dr"><span>Cash Flow Analysis</span><a href="#PLACEHOLDER_CASHFLOW" target="_blank">Open →</a></div>
-  <div class="dr"><span>Bookings Dashboard</span><a href="#PLACEHOLDER_BOOKINGS" target="_blank">Open →</a></div>
-  <div class="dr"><span>HubSpot Analytics</span><a href="#PLACEHOLDER_HUBSPOT_BI" target="_blank">Open →</a></div>
-  <div class="dr"><span>HR &amp; Headcount Report</span><a href="#PLACEHOLDER_HR_REPORT" target="_blank">Open →</a></div>
+  <div class="dr"><span>Financial Reporting</span><a href="https://app.powerbi.com/links/w71k_dzG6M?ctid=0eebc712-328d-4cbc-8b17-3125ef1dae6f&amp;pbi_source=linkShare" target="_blank">Open &rarr;</a></div>
+  <div class="dr"><span>Sales Dashboard</span><a href="https://app.powerbi.com/groups/950c03d3-0240-4486-8a39-7afa4d4a5f10/reports/9fcfa944-b29e-41c7-867c-a6ad29a49b05/0eaa08b2a7f0a9802de9?experience=power-bi" target="_blank">Open &rarr;</a></div>
 </div></div></div>
 <div class="mo" id="m-pol"><div class="md"><div class="md-h"><h2>Policies</h2><button class="md-x" onclick="closeM()">&times;</button></div><div class="md-b">
   <div class="md-tabs"><button class="md-tab active" onclick="sTab(this,'hr')">HR Policies</button><button class="md-tab" onclick="sTab(this,'fin')">Finance Policies</button></div>
   <div class="tc active" id="hr">
-    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Paid Time Off (PTO)</h4><div class="pi-t">Eligible from hire date. Accrual based on tenure. Request via Keka two weeks in advance.</div></div>
-    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Remote Work Policy</h4><div class="pi-t">Flexible hybrid. Core hours 9 AM – 3 PM Pacific. Stable internet required.</div></div>
-    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Code of Conduct</h4><div class="pi-t">Professionalism, integrity, respect. Maintain confidentiality, avoid conflicts of interest.</div></div>
-    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Benefits Enrollment</h4><div class="pi-t">30 days from start. Open enrollment November. Medical, dental, vision, 401(k), life insurance.</div></div>
+    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Employee Referral Policy</h4><div class="pi-t">Referral bonus is USD $1,500 per successful hire, paid in two installments: 50% after probation (3 months), 50% after one year. Both referrer and referral must be on payroll at each milestone. No cap on referrals. First referrer wins if duplicates. Rewards subject to taxation. Contact: shilpi@aviznetworks.com</div></div>
+    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Patent Incentive Program</h4><div class="pi-t">All employees eligible. $500 award per inventor per patent filed. Max 5 inventors per patent. Patents owned by Aviz USA. Award transferred within 30 days of filing. Patent Committee: Vishal Shukla, Gautam Agarwal, Chidambaram Perumal. Inventors must sign assignment agreements.</div></div>
+    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Gifting Policy</h4><div class="pi-t">Aviz maintains a &ldquo;No Gifting&rdquo; policy. Festival/ceremonial gifts (flowers, sweets) are acceptable. Gifts valued at Rs. 1,000+ must be reported to manager and HR. Never accept cash, gold, precious metals, or service-based gifts. Breach may result in termination.</div></div>
+    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Interns Onboarding</h4><div class="pi-t">Applicable to B.Tech students or recent graduates. Functional Head proposes internship to management. HR/Finance informed of paid/unpaid status, stipend, SOW, and mentor details. No full-time placement guaranteed. Absorption possible after assessment and if approved position exists. Internship certificate provided upon completion.</div></div>
+    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Code of Conduct</h4><div class="pi-t">Employees must comply with all laws, respect colleagues, protect company property, avoid conflicts of interest, and maintain professionalism. Report concerns to line manager, HR, CEO, or ethics@aviznetworks.com. No retaliation for good-faith reporting. Violations may result in demotion, suspension, termination, or legal action.</div></div>
   </div>
   <div class="tc" id="fin">
-    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Expense Reimbursement</h4><div class="pi-t">Submit within 30 days via Brex/Keka. Receipts over $25. Reimbursed within 5 business days.</div></div>
-    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Travel Policy</h4><div class="pi-t">Pre-approved by manager/VP. Economy domestic. Hotels max $250/night. Per diem $75/day.</div></div>
-    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Corporate Card Usage</h4><div class="pi-t">Brex for business only. No personal use. Receipts within 7 days.</div></div>
-    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Revenue Recognition</h4><div class="pi-t">ASC 606. Subscription ratably. Services as delivered.</div></div>
+    <div class="pi" onclick="this.classList.toggle('exp')"><h4>Emergency Credit Buffer Policy</h4><div class="pi-t">Emergency buffer is strictly for unforeseen circumstances not covered by regular budgets. Requires explicit Finance leadership approval. Buffer allocation max 25%, approved by manager and finance. Only actual authorized amounts reimbursed. Employees may not use another&rsquo;s card or allocation. All transactions must be documented. Violations may result in termination. Reviewed annually by Finance &amp; Operations.</div></div>
   </div>
 </div></div></div>
 <div class="mo" id="m-cpq"><div class="md"><div class="md-h"><h2>CPQ</h2><button class="md-x" onclick="closeM()">&times;</button></div><div class="md-b"><div class="md-links">
-  <a href="#PLACEHOLDER_CUSTOMER_PO" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Submit Customer PO</a>
-  <a href="#PLACEHOLDER_QUOTE_FORM" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Quote Submission Form</a>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfCOhPVKm8YpNld_tNMJVMVBtdRuMgTHcGXY8O2DsPSeui_BQ/viewform?usp=header" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Submit Customer PO</a>
+  <a href="https://sites.google.com/aviznetworks.com/avizfin/sales-departments" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Quote Submission Form</a>
 </div></div></div></div>
 <div class="mo" id="m-expense"><div class="md"><div class="md-h"><h2>Submit Expense</h2><button class="md-x" onclick="closeM()">&times;</button></div><div class="md-b"><div class="md-links">
-  <a href="#PLACEHOLDER_BREX_EXPENSE" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Brex</a>
-  <a href="#PLACEHOLDER_KEKA_EXPENSE" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Keka</a>
+  <a href="https://www.brex.com/" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Brex</a>
+  <a href="https://aviz.keka.com/#/me/expenses/pending" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Keka</a>
 </div></div></div></div>
 <div class="mo" id="m-cards"><div class="md"><div class="md-h"><h2>Corporate Cards</h2><button class="md-x" onclick="closeM()">&times;</button></div><div class="md-b"><div class="md-links">
-  <a href="#PLACEHOLDER_BREX_CARDS" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Brex Corporate Cards Portal</a>
+  <a href="https://www.brex.com/" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Brex Corporate Cards Portal</a>
 </div></div></div></div>
 <div class="mo" id="m-payroll"><div class="md"><div class="md-h"><h2>Payroll Portal</h2><button class="md-x" onclick="closeM()">&times;</button></div><div class="md-b"><div class="md-links">
-  <a href="#PLACEHOLDER_TRINET" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>TriNet Employee Login</a>
-  <a href="#PLACEHOLDER_KEKA_PAYROLL" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Keka</a>
+  <a href="https://www.trinet.com/" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>TriNet Employee Login</a>
+  <a href="https://aviz.keka.com/#/myfinances/summary" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Keka</a>
 </div></div></div></div>
 <div class="mo" id="m-help"><div class="md"><div class="md-h"><h2>Invoice &amp; Helpdesk</h2><button class="md-x" onclick="closeM()">&times;</button></div><div class="md-b"><div class="md-links">
-  <a href="mailto:finance@aviznetworks.com" class="md-lbtn"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>Email: Aviz Networks, Inc.</a>
-  <a href="#PLACEHOLDER_SLACK" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Slack Channel</a>
+  <a href="mailto:support@aviznetworks.com" class="md-lbtn"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>Email: support@aviznetworks.com</a>
+  <a href="https://slack.com/intl/en-in/" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Slack Channel</a>
 </div></div></div></div>
 
 <script>
