@@ -7,538 +7,159 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #fefcf9;
-    --bg-warm: #faf5ee;
-    --bg-card: #ffffff;
-    --terra: #b45330;
-    --terra-light: #d4724e;
-    --terra-glow: rgba(180,83,48,0.08);
-    --sage: #5b7a5e;
-    --sage-light: #7a9b7d;
-    --charcoal: #2c2c2c;
-    --graphite: #555555;
-    --muted: #8a8580;
-    --border: #e8e2d9;
-    --border-light: #f0ebe4;
-    --white: #ffffff;
-    --shadow: 0 2px 16px rgba(44,44,44,0.05);
-    --shadow-hover: 0 8px 40px rgba(44,44,44,0.1);
-    --r: 14px;
-    --r-sm: 10px;
-    --tr: 0.3s ease;
+    --bg:#fefcf9;--bg-warm:#faf5ee;--bg-card:#fff;--terra:#b45330;--terra-light:#d4724e;
+    --terra-glow:rgba(180,83,48,.08);--sage:#5b7a5e;--charcoal:#2c2c2c;--graphite:#555;
+    --muted:#8a8580;--border:#e8e2d9;--border-light:#f0ebe4;--white:#fff;
+    --shadow:0 2px 12px rgba(44,44,44,.05);--shadow-hover:0 6px 24px rgba(44,44,44,.1);
+    --r:10px;--tr:.25s ease;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Hanken Grotesk', sans-serif;
-    background: var(--bg);
-    color: var(--charcoal);
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
-  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;overflow:hidden}
+  body{font-family:'Hanken Grotesk',sans-serif;background:var(--bg);color:var(--charcoal);display:flex;flex-direction:column;-webkit-font-smoothing:antialiased}
 
-  /* ─── NAV ─── */
-  .nav {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 48px; height: 64px;
-    background: var(--bg);
-    border-bottom: 1px solid var(--border-light);
-    position: sticky; top: 0; z-index: 100;
-  }
-  .nav-brand {
-    display: flex; align-items: center; gap: 10px;
-  }
-  .nav-mark {
-    width: 32px; height: 32px;
-    background: var(--terra);
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .nav-mark svg { width: 16px; height: 16px; fill: var(--white); }
-  .nav-name {
-    font-family: 'Fraunces', serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--charcoal);
-  }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500;
-    transition: color var(--tr);
-  }
-  .nav-links a:hover { color: var(--terra); }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:44px;background:var(--bg);border-bottom:1px solid var(--border-light);flex-shrink:0}
+  .nav-brand{display:flex;align-items:center;gap:8px}
+  .nav-mark{width:28px;height:28px;background:var(--terra);border-radius:6px;display:flex;align-items:center;justify-content:center}
+  .nav-mark svg{width:14px;height:14px;fill:var(--white)}
+  .nav-name{font-family:'Fraunces',serif;font-size:14px;font-weight:600}
+  .nav-links{display:flex;gap:24px;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:12px;font-weight:500;transition:color var(--tr)}
+  .nav-links a:hover{color:var(--terra)}
 
-  /* ─── HERO ─── */
-  .hero {
-    padding: 80px 48px 72px;
-    text-align: center;
-    background: linear-gradient(180deg, var(--bg-warm) 0%, var(--bg) 100%);
-    position: relative;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, var(--terra-glow) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-inner { position: relative; }
-  .hero-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--terra);
-    margin-bottom: 20px;
-    animation: riseIn 0.7s ease both;
-  }
-  .hero h1 {
-    font-family: 'Fraunces', serif;
-    font-size: 50px;
-    font-weight: 700;
-    color: var(--charcoal);
-    line-height: 1.15;
-    margin-bottom: 20px;
-    animation: riseIn 0.7s ease 0.08s both;
-  }
-  .hero-rule {
-    width: 48px; height: 2px; background: var(--terra); margin: 0 auto 20px; border-radius: 1px;
-    animation: riseIn 0.7s ease 0.16s both;
-  }
-  .hero p {
-    font-size: 17px; color: var(--graphite); max-width: 540px; margin: 0 auto;
-    font-weight: 400; line-height: 1.7;
-    animation: riseIn 0.7s ease 0.24s both;
-  }
-  @keyframes riseIn {
-    from { opacity: 0; transform: translateY(18px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .hero{padding:20px 32px 16px;text-align:center;background:linear-gradient(180deg,var(--bg-warm) 0%,var(--bg) 100%);flex-shrink:0;position:relative}
+  .hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(circle,var(--terra-glow) 0%,transparent 70%);pointer-events:none}
+  .hero-inner{position:relative}
+  .hero-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--terra);margin-bottom:6px}
+  .hero h1{font-family:'Fraunces',serif;font-size:26px;font-weight:700;line-height:1.15;margin-bottom:4px}
+  .hero-rule{width:36px;height:2px;background:var(--terra);margin:0 auto 6px;border-radius:1px}
+  .hero p{font-size:12px;color:var(--graphite);max-width:480px;margin:0 auto}
 
-  /* ─── CONTAINER ─── */
-  .wrap { max-width: 1140px; margin: 0 auto; padding: 56px 48px; }
-  .sec-title {
-    font-family: 'Fraunces', serif;
-    font-size: 28px; font-weight: 600;
-    text-align: center; margin-bottom: 6px;
-  }
-  .sec-sub {
-    text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 40px;
-  }
-  .sec-bar {
-    display: block; width: 36px; height: 2px;
-    background: var(--terra); margin: 10px auto 0; border-radius: 1px;
-  }
+  .main{flex:1;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;overflow:hidden}
 
-  /* ─── FEATURES ─── */
-  .features { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 40px; }
-  .feat {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    padding: 40px 28px 36px;
-    text-align: center;
-    cursor: pointer;
-    transition: all var(--tr);
-    position: relative;
-  }
-  .feat:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); border-color: var(--terra-light); }
-  .feat-circle {
-    width: 64px; height: 64px;
-    border: 2px solid var(--border);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px;
-    background: var(--bg-warm);
-    transition: all var(--tr);
-  }
-  .feat:hover .feat-circle { border-color: var(--terra); background: var(--terra-glow); }
-  .feat-circle svg { width: 26px; height: 26px; stroke: var(--terra); stroke-width: 1.5; fill: none; }
-  .feat h3 {
-    font-family: 'Fraunces', serif;
-    font-size: 19px; font-weight: 600; margin-bottom: 6px; color: var(--charcoal);
-  }
-  .feat p { font-size: 13px; color: var(--muted); }
-  .feat-cta {
-    margin-top: 16px;
-    font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-    color: var(--terra);
-    opacity: 0; transform: translateY(6px);
-    transition: all var(--tr);
-  }
-  .feat:hover .feat-cta { opacity: 1; transform: translateY(0); }
+  .features-row{grid-column:1/-1;display:flex;gap:12px;padding:10px 24px;background:var(--bg-card);border-bottom:1px solid var(--border);flex-shrink:0}
+  .feat{flex:1;display:flex;align-items:center;gap:10px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;cursor:pointer;transition:all var(--tr)}
+  .feat:hover{box-shadow:var(--shadow-hover);transform:translateY(-1px);border-color:var(--terra-light)}
+  .feat-circle{width:36px;height:36px;border:1.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg-warm);flex-shrink:0;transition:all var(--tr)}
+  .feat:hover .feat-circle{border-color:var(--terra);background:var(--terra-glow)}
+  .feat-circle svg{width:18px;height:18px;stroke:var(--terra);stroke-width:1.5;fill:none}
+  .feat h3{font-family:'Fraunces',serif;font-size:13px;font-weight:600}
+  .feat p{font-size:10px;color:var(--muted)}
 
-  /* ─── CALENDAR ─── */
-  .cal-bg { background: var(--bg-warm); border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); }
-  .cal-layout { display: grid; grid-template-columns: 220px 1fr; gap: 36px; margin-top: 28px; }
-  .cal-legend { display: flex; flex-direction: column; gap: 8px; }
-  .cal-leg-item {
-    display: flex; align-items: center; gap: 10px;
-    padding: 10px 14px;
-    background: var(--bg-card);
-    border-radius: var(--r-sm);
-    border: 1px solid var(--border-light);
-    font-size: 12px; font-weight: 500; color: var(--graphite);
-  }
-  .cal-pip { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
-  .cal-note {
-    text-align: center; font-size: 12px; color: var(--muted);
-    margin-bottom: 20px; font-style: italic;
-  }
-  .cal-frame {
-    border-radius: var(--r);
-    overflow: hidden;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-  }
-  .cal-frame iframe { width: 100%; height: 480px; border: 0; }
+  .cal-panel{padding:12px 24px;display:flex;flex-direction:column;overflow:hidden}
+  .panel-title{font-family:'Fraunces',serif;font-size:15px;font-weight:600;margin-bottom:2px}
+  .panel-bar{width:28px;height:2px;background:var(--terra);margin-bottom:4px;border-radius:1px}
+  .cal-note{font-size:9px;color:var(--muted);font-style:italic;margin-bottom:6px}
+  .cal-legend{display:flex;flex-wrap:wrap;gap:2px 10px;margin-bottom:6px}
+  .cal-leg-item{display:flex;align-items:center;gap:3px;font-size:9px;color:var(--graphite)}
+  .cal-pip{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+  .cal-frame{flex:1;border-radius:var(--r);overflow:hidden;border:1px solid var(--border);background:var(--bg-card)}
+  .cal-frame iframe{width:100%;height:100%;border:0}
 
-  /* ─── LINKS ─── */
-  .links-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 22px; margin-top: 40px; }
-  .lk-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--r);
-    padding: 24px;
-    transition: box-shadow var(--tr);
-  }
-  .lk-card:hover { box-shadow: var(--shadow); }
-  .lk-head {
-    font-family: 'Fraunces', serif;
-    font-size: 15px; font-weight: 600; margin-bottom: 14px;
-    color: var(--charcoal);
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(--border-light);
-    display: flex; align-items: center; gap: 8px;
-  }
-  .lk-head-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--terra); }
-  .lk-btns { display: flex; flex-wrap: wrap; gap: 8px; }
-  .lk-btn {
-    display: inline-flex; align-items: center; gap: 6px;
-    padding: 9px 18px;
-    background: var(--bg-warm);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--charcoal);
-    font-size: 13px; font-weight: 500;
-    text-decoration: none;
-    transition: all var(--tr);
-  }
-  .lk-btn:hover { background: var(--terra); color: var(--white); border-color: var(--terra); }
-  .lk-btn svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+  .links-panel{padding:12px 24px;border-left:1px solid var(--border);overflow-y:auto}
+  .lk-card{margin-bottom:10px}
+  .lk-head{font-family:'Fraunces',serif;font-size:11px;font-weight:600;margin-bottom:5px;padding-bottom:3px;border-bottom:1px solid var(--border-light);display:flex;align-items:center;gap:6px}
+  .lk-head-dot{width:5px;height:5px;border-radius:50%;background:var(--terra)}
+  .lk-btns{display:flex;flex-wrap:wrap;gap:4px}
+  .lk-btn{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:var(--bg-warm);border:1px solid var(--border);border-radius:6px;color:var(--charcoal);font-size:11px;font-weight:500;text-decoration:none;transition:all var(--tr)}
+  .lk-btn:hover{background:var(--terra);color:var(--white);border-color:var(--terra)}
+  .lk-btn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2}
 
-  /* ─── FOOTER ─── */
-  footer {
-    text-align: center; padding: 32px; font-size: 13px;
-    color: var(--muted);
-    border-top: 1px solid var(--border-light);
-  }
-  footer span { color: var(--terra); font-weight: 600; }
+  footer{text-align:center;padding:5px;font-size:10px;color:var(--muted);border-top:1px solid var(--border-light);flex-shrink:0}
+  footer span{color:var(--terra);font-weight:600}
 
-  /* ─── MODAL ─── */
-  .overlay {
-    display: none; position: fixed; inset: 0;
-    background: rgba(44,44,44,0.35); backdrop-filter: blur(5px);
-    z-index: 200; align-items: center; justify-content: center;
-  }
-  .overlay.on { display: flex; }
-  .mdl {
-    background: var(--bg-card);
-    border-radius: 18px;
-    width: 90%; max-width: 680px; max-height: 80vh; overflow-y: auto;
-    box-shadow: 0 28px 80px rgba(0,0,0,0.18);
-    animation: mUp 0.25s ease;
-  }
-  .mdl-top {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 24px 28px 20px;
-    border-bottom: 1px solid var(--border-light);
-  }
-  .mdl-top h2 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; }
-  .mdl-cls {
-    width: 34px; height: 34px;
-    border: 1px solid var(--border);
-    border-radius: var(--r-sm);
-    background: var(--bg-warm);
-    cursor: pointer; font-size: 18px;
-    display: flex; align-items: center; justify-content: center;
-    transition: all var(--tr); color: var(--muted);
-  }
-  .mdl-cls:hover { background: var(--terra); color: var(--white); border-color: var(--terra); }
-  .mdl-content { padding: 24px 28px 28px; }
-
-  /* Tabs */
-  .tabs-bar {
-    display: flex; gap: 4px; margin-bottom: 24px;
-    background: var(--bg-warm); border-radius: var(--r-sm); padding: 4px;
-  }
-  .tab-btn {
-    flex: 1; padding: 10px; font-size: 13px; font-weight: 600;
-    color: var(--muted); border: none; background: none;
-    border-radius: 8px; cursor: pointer; transition: all var(--tr);
-  }
-  .tab-btn.on { background: var(--bg-card); color: var(--charcoal); box-shadow: var(--shadow); }
-  .tab-panel { display: none; }
-  .tab-panel.on { display: block; }
-
-  .pol {
-    border-bottom: 1px solid var(--border-light); padding: 14px 0;
-  }
-  .pol:last-child { border-bottom: 0; }
-  .pol-title {
-    font-weight: 600; font-size: 15px; cursor: pointer;
-    display: flex; align-items: center; gap: 10px; color: var(--charcoal);
-  }
-  .pol-arr {
-    width: 20px; height: 20px;
-    background: var(--bg-warm); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; color: var(--terra);
-    transition: transform var(--tr); flex-shrink: 0;
-  }
-  .pol.show .pol-arr { transform: rotate(90deg); }
-  .pol-txt {
-    display: none; padding: 10px 0 4px 30px;
-    color: var(--graphite); font-size: 14px; line-height: 1.7;
-  }
-  .pol.show .pol-txt { display: block; }
-
-  /* Steps */
-  .stp {
-    display: flex; gap: 16px; padding: 16px 0;
-    border-bottom: 1px solid var(--border-light);
-  }
-  .stp:last-child { border-bottom: 0; }
-  .stp-n {
-    width: 34px; height: 34px;
-    background: var(--terra-glow); border: 2px solid var(--terra);
-    color: var(--terra); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 13px; flex-shrink: 0;
-  }
-  .stp h4 { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
-  .stp p { font-size: 13px; color: var(--graphite); }
-  .stp-a {
-    display: inline-block; margin-top: 6px;
-    color: var(--terra); font-weight: 600; font-size: 13px;
-    text-decoration: none;
-  }
-  .stp-a:hover { text-decoration: underline; }
-
-  /* Dashboard list */
-  .dsh {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 16px; background: var(--bg-warm);
-    border-radius: var(--r-sm); margin-bottom: 8px;
-  }
-  .dsh:hover { background: var(--terra-glow); }
-  .dsh span { font-weight: 500; font-size: 14px; }
-  .dsh a { color: var(--terra); font-weight: 600; font-size: 13px; text-decoration: none; }
-
-  @keyframes mUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @media (max-width: 900px) {
-    .features { grid-template-columns: 1fr; }
-    .cal-layout { grid-template-columns: 1fr; }
-    .links-row { grid-template-columns: 1fr; }
-    .hero h1 { font-size: 34px; }
-    .nav, .wrap { padding-left: 20px; padding-right: 20px; }
-    .nav-links { display: none; }
-  }
+  .overlay{display:none;position:fixed;inset:0;background:rgba(44,44,44,.35);backdrop-filter:blur(5px);z-index:200;align-items:center;justify-content:center}
+  .overlay.on{display:flex}
+  .mdl{background:var(--bg-card);border-radius:14px;width:90%;max-width:640px;max-height:75vh;overflow-y:auto;box-shadow:0 28px 80px rgba(0,0,0,.18);animation:mUp .25s ease}
+  .mdl-top{display:flex;justify-content:space-between;align-items:center;padding:18px 22px 14px;border-bottom:1px solid var(--border-light)}
+  .mdl-top h2{font-family:'Fraunces',serif;font-size:20px;font-weight:600}
+  .mdl-cls{width:28px;height:28px;border:1px solid var(--border);border-radius:8px;background:var(--bg-warm);cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all var(--tr);color:var(--muted)}
+  .mdl-cls:hover{background:var(--terra);color:var(--white);border-color:var(--terra)}
+  .mdl-content{padding:18px 22px 22px}
+  .tabs-bar{display:flex;gap:4px;margin-bottom:16px;background:var(--bg-warm);border-radius:8px;padding:3px}
+  .tab-btn{flex:1;padding:7px;font-size:12px;font-weight:600;color:var(--muted);border:none;background:none;border-radius:6px;cursor:pointer;transition:all var(--tr)}
+  .tab-btn.on{background:var(--bg-card);color:var(--charcoal);box-shadow:var(--shadow)}
+  .tab-panel{display:none}.tab-panel.on{display:block}
+  .pol{border-bottom:1px solid var(--border-light);padding:8px 0}.pol:last-child{border-bottom:0}
+  .pol-title{font-weight:600;font-size:13px;cursor:pointer;display:flex;align-items:center;gap:8px}
+  .pol-arr{width:16px;height:16px;background:var(--bg-warm);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--terra);transition:transform var(--tr);flex-shrink:0}
+  .pol.show .pol-arr{transform:rotate(90deg)}
+  .pol-txt{display:none;padding:6px 0 2px 24px;color:var(--graphite);font-size:12px;line-height:1.6}
+  .pol.show .pol-txt{display:block}
+  .stp{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--border-light)}.stp:last-child{border-bottom:0}
+  .stp-n{width:26px;height:26px;background:var(--terra-glow);border:1.5px solid var(--terra);color:var(--terra);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:11px;flex-shrink:0}
+  .stp h4{font-size:13px;font-weight:600;margin-bottom:2px}.stp p{font-size:11px;color:var(--graphite)}
+  .stp-a{display:inline-block;margin-top:4px;color:var(--terra);font-weight:600;font-size:11px;text-decoration:none}
+  .stp-a:hover{text-decoration:underline}
+  .dsh{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:var(--bg-warm);border-radius:8px;margin-bottom:5px}
+  .dsh:hover{background:var(--terra-glow)}
+  .dsh span{font-weight:500;font-size:13px}.dsh a{color:var(--terra);font-weight:600;font-size:12px;text-decoration:none}
+  @keyframes mUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:900px){.main{grid-template-columns:1fr}html,body{overflow:auto;height:auto}.links-panel{border-left:0;border-top:1px solid var(--border)}.nav-links{display:none}}
 </style>
 </head>
 <body>
+<nav class="nav"><div class="nav-brand"><div class="nav-mark"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="nav-name">Aviz Finance</div></div><ul class="nav-links"><li><a href="#">Home</a></li><li><a href="#">Our Team</a></li><li><a href="#">About</a></li><li><a href="#">Departments</a></li></ul></nav>
 
-<nav class="nav">
-  <div class="nav-brand">
-    <div class="nav-mark"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-    <div class="nav-name">Aviz Finance</div>
+<section class="hero"><div class="hero-inner"><div class="hero-label">Aviz Networks — Finance</div><h1>Welcome to Aviz Finance</h1><div class="hero-rule"></div><p>Driving Transparency, Efficiency, and Growth. Enabling Insight, Compliance, and Performance.</p></div></section>
+
+<div class="main">
+  <div class="features-row">
+    <div class="feat" onclick="showM('q2o')"><div class="feat-circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="8" r="2"/><circle cx="20" cy="8" r="2"/><circle cx="4" cy="16" r="2"/><circle cx="20" cy="16" r="2"/><line x1="6" y1="8" x2="9" y2="10"/><line x1="18" y1="8" x2="15" y2="10"/><line x1="6" y1="16" x2="9" y2="14"/><line x1="18" y1="16" x2="15" y2="14"/></svg></div><div><h3>Quote to Order</h3><p>Process workflow</p></div></div>
+    <div class="feat" onclick="showM('dash')"><div class="feat-circle"><svg viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="6" width="4" height="14" rx="1"/><rect x="17" y="2" width="4" height="18" rx="1"/></svg></div><div><h3>Reporting Dashboards</h3><p>Power BI analytics</p></div></div>
+    <div class="feat" onclick="showM('pol')"><div class="feat-circle"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg></div><div><h3>Policies</h3><p>HR &amp; Finance</p></div></div>
   </div>
-  <ul class="nav-links">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Our Team</a></li>
-    <li><a href="#">About</a></li>
-    <li><a href="#">Departments</a></li>
-  </ul>
-</nav>
 
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-label">Aviz Networks — Finance</div>
-    <h1>Welcome to<br>Aviz Finance</h1>
-    <div class="hero-rule"></div>
-    <p>Driving Transparency, Efficiency, and Growth. Enabling Insight, Compliance, and Performance.</p>
+  <div class="cal-panel"><div class="panel-title">Finance Calendar</div><div class="panel-bar"></div><div class="cal-note">All Financial systems close 9am (Pacific) on the day of processing</div><div class="cal-legend"><div class="cal-leg-item"><div class="cal-pip" style="background:#4285f4"></div>Payroll Changes Due</div><div class="cal-leg-item"><div class="cal-pip" style="background:#a142f4"></div>Payroll Due Date</div><div class="cal-leg-item"><div class="cal-pip" style="background:#2c2c2c"></div>Pay Date &amp; Period End</div><div class="cal-leg-item"><div class="cal-pip" style="background:#5b7a5e"></div>Pay Date</div><div class="cal-leg-item"><div class="cal-pip" style="background:#2e7d32"></div>Period End Date</div><div class="cal-leg-item"><div class="cal-pip" style="background:#e8923b"></div>Expense/Commission Due</div></div><div class="cal-frame"><iframe src="https://calendar.google.com/calendar/embed?src=PLACEHOLDER_CALENDAR_ID&ctz=America/Los_Angeles&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0" title="Finance Calendar"></iframe></div></div>
+
+  <div class="links-panel"><div class="panel-title">Useful Links</div><div class="panel-bar" style="margin-bottom:10px"></div>
+    <div class="lk-card"><div class="lk-head"><div class="lk-head-dot"></div>Finance Dashboard</div><div class="lk-btns"><a href="#PLACEHOLDER_FINANCE_BI" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M7 14l3-3 3 3 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>Finance BI</a><a href="#PLACEHOLDER_HUBSPOT_BI" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M7 14l3-3 3 3 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>HubSpot BI</a></div></div>
+    <div class="lk-card"><div class="lk-head"><div class="lk-head-dot"></div>CPQ</div><div class="lk-btns"><a href="#PLACEHOLDER_CUSTOMER_PO" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Submit Customer PO</a><a href="#PLACEHOLDER_QUOTE_FORM" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Quote Submission</a></div></div>
+    <div class="lk-card"><div class="lk-head"><div class="lk-head-dot"></div>Submit Expense</div><div class="lk-btns"><a href="#PLACEHOLDER_BREX_EXPENSE" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Brex</a><a href="#PLACEHOLDER_KEKA_EXPENSE" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Keka</a></div></div>
+    <div class="lk-card"><div class="lk-head"><div class="lk-head-dot"></div>Corporate Cards</div><div class="lk-btns"><a href="#PLACEHOLDER_BREX_CARDS" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Brex</a></div></div>
+    <div class="lk-card"><div class="lk-head"><div class="lk-head-dot"></div>Payroll Portal</div><div class="lk-btns"><a href="#PLACEHOLDER_TRINET" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>TriNet</a><a href="#PLACEHOLDER_KEKA_PAYROLL" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Keka</a></div></div>
+    <div class="lk-card"><div class="lk-head"><div class="lk-head-dot"></div>Invoice Request</div><div class="lk-btns"><a href="mailto:finance@aviznetworks.com" class="lk-btn"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>Email: Aviz Networks</a></div></div>
+    <div class="lk-card"><div class="lk-head"><div class="lk-head-dot"></div>Finance Helpdesk</div><div class="lk-btns"><a href="#PLACEHOLDER_SLACK" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M15 12a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/><path d="M9 18a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>Slack Channel</a></div></div>
   </div>
-</section>
-
-<section class="wrap">
-  <div class="features">
-    <div class="feat" onclick="showM('q2o')">
-      <div class="feat-circle">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="8" r="2"/><circle cx="20" cy="8" r="2"/><circle cx="4" cy="16" r="2"/><circle cx="20" cy="16" r="2"/><line x1="6" y1="8" x2="9" y2="10"/><line x1="18" y1="8" x2="15" y2="10"/><line x1="6" y1="16" x2="9" y2="14"/><line x1="18" y1="16" x2="15" y2="14"/></svg>
-      </div>
-      <h3>Quote to Order</h3>
-      <p>End-to-end process workflow</p>
-      <div class="feat-cta">View Process →</div>
-    </div>
-    <div class="feat" onclick="showM('dash')">
-      <div class="feat-circle">
-        <svg viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="6" width="4" height="14" rx="1"/><rect x="17" y="2" width="4" height="18" rx="1"/></svg>
-      </div>
-      <h3>Reporting Dashboards</h3>
-      <p>Power BI analytics &amp; insights</p>
-      <div class="feat-cta">View Reports →</div>
-    </div>
-    <div class="feat" onclick="showM('pol')">
-      <div class="feat-circle">
-        <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
-      </div>
-      <h3>Policies</h3>
-      <p>HR &amp; Finance guidelines</p>
-      <div class="feat-cta">Read Policies →</div>
-    </div>
-  </div>
-</section>
-
-<section class="cal-bg">
-  <div class="wrap">
-    <div class="sec-title">Finance Calendar</div>
-    <span class="sec-bar"></span>
-    <p class="cal-note">All Financial systems close 9am (Pacific) on the day of processing</p>
-    <div class="cal-layout">
-      <div class="cal-legend">
-        <div class="cal-leg-item"><div class="cal-pip" style="background:#4285f4;"></div>Payroll Changes Due</div>
-        <div class="cal-leg-item"><div class="cal-pip" style="background:#a142f4;"></div>Payroll Due Date</div>
-        <div class="cal-leg-item"><div class="cal-pip" style="background:#2c2c2c;"></div>Pay Date &amp; Period End</div>
-        <div class="cal-leg-item"><div class="cal-pip" style="background:#5b7a5e;"></div>Pay Date</div>
-        <div class="cal-leg-item"><div class="cal-pip" style="background:#2e7d32;"></div>Pay Period End Date</div>
-        <div class="cal-leg-item"><div class="cal-pip" style="background:#e8923b;"></div>Expense &amp; Commission Due (10 AM PT)</div>
-      </div>
-      <div class="cal-frame">
-        <iframe src="https://calendar.google.com/calendar/embed?src=PLACEHOLDER_CALENDAR_ID&ctz=America/Los_Angeles&mode=MONTH&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0" title="Finance Calendar"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="wrap">
-  <div class="sec-title">Useful Links</div>
-  <span class="sec-bar"></span>
-  <div class="links-row">
-    <div class="lk-card">
-      <div class="lk-head"><div class="lk-head-dot"></div>Finance Dashboard</div>
-      <div class="lk-btns">
-        <a href="#PLACEHOLDER_FINANCE_BI" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M7 14l3-3 3 3 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>Finance BI</a>
-        <a href="#PLACEHOLDER_HUBSPOT_BI" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M7 14l3-3 3 3 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>HubSpot BI</a>
-      </div>
-    </div>
-    <div class="lk-card">
-      <div class="lk-head"><div class="lk-head-dot"></div>CPQ</div>
-      <div class="lk-btns">
-        <a href="#PLACEHOLDER_CUSTOMER_PO" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Submit Customer PO</a>
-        <a href="#PLACEHOLDER_QUOTE_FORM" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Quote Submission Form</a>
-      </div>
-    </div>
-    <div class="lk-card">
-      <div class="lk-head"><div class="lk-head-dot"></div>Submit Expense</div>
-      <div class="lk-btns">
-        <a href="#PLACEHOLDER_BREX_EXPENSE" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Brex</a>
-        <a href="#PLACEHOLDER_KEKA_EXPENSE" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Keka</a>
-      </div>
-    </div>
-    <div class="lk-card">
-      <div class="lk-head"><div class="lk-head-dot"></div>Corporate Cards</div>
-      <div class="lk-btns">
-        <a href="#PLACEHOLDER_BREX_CARDS" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Brex</a>
-      </div>
-    </div>
-    <div class="lk-card">
-      <div class="lk-head"><div class="lk-head-dot"></div>Payroll Portal</div>
-      <div class="lk-btns">
-        <a href="#PLACEHOLDER_TRINET" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>TriNet Employee Login</a>
-        <a href="#PLACEHOLDER_KEKA_PAYROLL" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Keka</a>
-      </div>
-    </div>
-    <div class="lk-card">
-      <div class="lk-head"><div class="lk-head-dot"></div>Invoice Request (Bill Customers)</div>
-      <div class="lk-btns">
-        <a href="mailto:finance@aviznetworks.com" class="lk-btn"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>Email: Aviz Networks, Inc.</a>
-      </div>
-    </div>
-    <div class="lk-card">
-      <div class="lk-head"><div class="lk-head-dot"></div>Finance Helpdesk / Tickets</div>
-      <div class="lk-btns">
-        <a href="#PLACEHOLDER_SLACK" class="lk-btn" target="_blank"><svg viewBox="0 0 24 24"><path d="M15 12a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/><path d="M9 18a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>Slack Channel</a>
-      </div>
-    </div>
-  </div>
-</section>
-
+</div>
 <footer>Copyright &copy; 2025 <span>Aviz Networks Inc</span></footer>
 
-<!-- MODALS -->
-<div class="overlay" id="o-q2o">
-  <div class="mdl">
-    <div class="mdl-top"><h2>Quote to Order Process</h2><button class="mdl-cls" onclick="hideM()">&times;</button></div>
-    <div class="mdl-content">
-      <div class="stp"><div class="stp-n">1</div><div><h4>Submit Quote Request</h4><p>Complete the quote submission form with customer details and product requirements.</p><a href="#PLACEHOLDER_QUOTE_FORM" class="stp-a" target="_blank">Open Quote Form →</a></div></div>
-      <div class="stp"><div class="stp-n">2</div><div><h4>Finance Review &amp; Approval</h4><p>Finance team reviews pricing, terms, and compliance. Typical turnaround: 1–2 business days.</p></div></div>
-      <div class="stp"><div class="stp-n">3</div><div><h4>Customer PO Submission</h4><p>Once approved, submit the customer purchase order for processing.</p><a href="#PLACEHOLDER_CUSTOMER_PO" class="stp-a" target="_blank">Submit Customer PO →</a></div></div>
-      <div class="stp"><div class="stp-n">4</div><div><h4>Order Fulfillment</h4><p>Order is entered into the system and fulfillment begins.</p><a href="#PLACEHOLDER_FINANCE_BI" class="stp-a" target="_blank">View Dashboard →</a></div></div>
-      <div class="stp"><div class="stp-n">5</div><div><h4>Invoice &amp; Revenue Recognition</h4><p>Invoice is generated and revenue is recognized per company policy.</p></div></div>
-    </div>
+<div class="overlay" id="o-q2o"><div class="mdl"><div class="mdl-top"><h2>Quote to Order Process</h2><button class="mdl-cls" onclick="hideM()">&times;</button></div><div class="mdl-content">
+  <div class="stp"><div class="stp-n">1</div><div><h4>Submit Quote Request</h4><p>Complete quote form with customer details.</p><a href="#PLACEHOLDER_QUOTE_FORM" class="stp-a" target="_blank">Open Quote Form →</a></div></div>
+  <div class="stp"><div class="stp-n">2</div><div><h4>Finance Review &amp; Approval</h4><p>Pricing, terms, compliance. 1–2 business days.</p></div></div>
+  <div class="stp"><div class="stp-n">3</div><div><h4>Customer PO Submission</h4><p>Submit purchase order once approved.</p><a href="#PLACEHOLDER_CUSTOMER_PO" class="stp-a" target="_blank">Submit Customer PO →</a></div></div>
+  <div class="stp"><div class="stp-n">4</div><div><h4>Order Fulfillment</h4><p>Order entered, fulfillment begins.</p><a href="#PLACEHOLDER_FINANCE_BI" class="stp-a" target="_blank">View Dashboard →</a></div></div>
+  <div class="stp"><div class="stp-n">5</div><div><h4>Invoice &amp; Revenue Recognition</h4><p>Invoice generated, revenue recognized per policy.</p></div></div>
+</div></div></div>
+<div class="overlay" id="o-dash"><div class="mdl"><div class="mdl-top"><h2>Reporting Dashboards</h2><button class="mdl-cls" onclick="hideM()">&times;</button></div><div class="mdl-content">
+  <div class="dsh"><span>Finance Overview</span><a href="#PLACEHOLDER_FINANCE_BI" target="_blank">Open →</a></div>
+  <div class="dsh"><span>ARR &amp; Revenue Report</span><a href="#PLACEHOLDER_ARR_REPORT" target="_blank">Open →</a></div>
+  <div class="dsh"><span>Cash Flow Analysis</span><a href="#PLACEHOLDER_CASHFLOW" target="_blank">Open →</a></div>
+  <div class="dsh"><span>Bookings Dashboard</span><a href="#PLACEHOLDER_BOOKINGS" target="_blank">Open →</a></div>
+  <div class="dsh"><span>HubSpot Analytics</span><a href="#PLACEHOLDER_HUBSPOT_BI" target="_blank">Open →</a></div>
+  <div class="dsh"><span>HR &amp; Headcount Report</span><a href="#PLACEHOLDER_HR_REPORT" target="_blank">Open →</a></div>
+</div></div></div>
+<div class="overlay" id="o-pol"><div class="mdl"><div class="mdl-top"><h2>Policies</h2><button class="mdl-cls" onclick="hideM()">&times;</button></div><div class="mdl-content">
+  <div class="tabs-bar"><button class="tab-btn on" onclick="swTab(this,'thr')">HR Policies</button><button class="tab-btn" onclick="swTab(this,'tfin')">Finance Policies</button></div>
+  <div class="tab-panel on" id="thr">
+    <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Paid Time Off (PTO)</div><div class="pol-txt">Eligible from hire date. Accrual by tenure. Carries over to cap. Request via Keka 2 weeks in advance.</div></div>
+    <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Remote Work Policy</div><div class="pol-txt">Hybrid with manager approval. Core hours 9 AM–3 PM Pacific. Stable internet required.</div></div>
+    <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Code of Conduct</div><div class="pol-txt">Professionalism, integrity, respect. Maintain confidentiality, avoid conflicts of interest.</div></div>
+    <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Benefits Enrollment</div><div class="pol-txt">30 days from start. Annual open enrollment November. Medical, dental, vision, 401(k), life.</div></div>
   </div>
-</div>
-
-<div class="overlay" id="o-dash">
-  <div class="mdl">
-    <div class="mdl-top"><h2>Reporting Dashboards</h2><button class="mdl-cls" onclick="hideM()">&times;</button></div>
-    <div class="mdl-content">
-      <div class="dsh"><span>Finance Overview</span><a href="#PLACEHOLDER_FINANCE_BI" target="_blank">Open →</a></div>
-      <div class="dsh"><span>ARR &amp; Revenue Report</span><a href="#PLACEHOLDER_ARR_REPORT" target="_blank">Open →</a></div>
-      <div class="dsh"><span>Cash Flow Analysis</span><a href="#PLACEHOLDER_CASHFLOW" target="_blank">Open →</a></div>
-      <div class="dsh"><span>Bookings Dashboard</span><a href="#PLACEHOLDER_BOOKINGS" target="_blank">Open →</a></div>
-      <div class="dsh"><span>HubSpot Analytics</span><a href="#PLACEHOLDER_HUBSPOT_BI" target="_blank">Open →</a></div>
-      <div class="dsh"><span>HR &amp; Headcount Report</span><a href="#PLACEHOLDER_HR_REPORT" target="_blank">Open →</a></div>
-    </div>
+  <div class="tab-panel" id="tfin">
+    <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Expense Reimbursement</div><div class="pol-txt">Submit within 30 days via Brex/Keka. Receipts over $25. Manager approval. 5 business day turnaround.</div></div>
+    <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Travel Policy</div><div class="pol-txt">Pre-approval from manager and VP. Economy domestic. Hotels max $250/night. Meals $75/day.</div></div>
+    <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Corporate Card Usage</div><div class="pol-txt">Brex for business only. No personal use. Categorize and receipt within 7 days.</div></div>
+    <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Revenue Recognition</div><div class="pol-txt">ASC 606. Subscription ratably. Services as delivered. Finance reviews all contracts.</div></div>
   </div>
-</div>
-
-<div class="overlay" id="o-pol">
-  <div class="mdl">
-    <div class="mdl-top"><h2>Policies</h2><button class="mdl-cls" onclick="hideM()">&times;</button></div>
-    <div class="mdl-content">
-      <div class="tabs-bar">
-        <button class="tab-btn on" onclick="swTab(this,'thr')">HR Policies</button>
-        <button class="tab-btn" onclick="swTab(this,'tfin')">Finance Policies</button>
-      </div>
-      <div class="tab-panel on" id="thr">
-        <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Paid Time Off (PTO)</div><div class="pol-txt">All full-time employees are eligible for PTO beginning on their date of hire. PTO accrual rates are based on length of service. Unused PTO carries over up to the maximum accrual cap. Request PTO through Keka at least two weeks in advance.</div></div>
-        <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Remote Work Policy</div><div class="pol-txt">Aviz Networks supports a flexible hybrid work environment. Remote workers must maintain regular working hours, be available during core hours (9 AM – 3 PM Pacific), and ensure a stable internet connection.</div></div>
-        <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Code of Conduct</div><div class="pol-txt">All employees are expected to conduct themselves with professionalism, integrity, and respect. This includes maintaining confidentiality, avoiding conflicts of interest, and complying with all applicable laws.</div></div>
-        <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Benefits Enrollment</div><div class="pol-txt">New hires have 30 days to enroll in benefits. Open enrollment occurs annually in November. Benefits include medical, dental, vision, 401(k), and life insurance.</div></div>
-      </div>
-      <div class="tab-panel" id="tfin">
-        <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Expense Reimbursement</div><div class="pol-txt">Submit all business expenses within 30 days via Brex or Keka. Receipts required over $25. Manager approval required. Reimbursement processed within 5 business days.</div></div>
-        <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Travel Policy</div><div class="pol-txt">Business travel must be pre-approved by manager and VP. Economy class standard for domestic flights. Hotels max $250/night unless high-cost market. Meals per diem $75/day domestic.</div></div>
-        <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Corporate Card Usage</div><div class="pol-txt">Brex cards are for authorized business expenses only. Personal use is prohibited. Categorize transactions and upload receipts within 7 days.</div></div>
-        <div class="pol" onclick="this.classList.toggle('show')"><div class="pol-title"><div class="pol-arr">›</div>Revenue Recognition</div><div class="pol-txt">Revenue recognized per ASC 606. Subscription revenue recognized ratably. Professional services recognized as delivered. Finance reviews all contracts.</div></div>
-      </div>
-    </div>
-  </div>
-</div>
+</div></div></div>
 
 <script>
-function showM(id){hideM();document.getElementById('o-'+id).classList.add('on');document.body.style.overflow='hidden';}
-function hideM(){document.querySelectorAll('.overlay').forEach(o=>o.classList.remove('on'));document.body.style.overflow='';}
-document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)hideM();}));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')hideM();});
-function swTab(btn,id){
-  btn.closest('.mdl-content').querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('on'));
-  btn.closest('.mdl-content').querySelectorAll('.tab-panel').forEach(t=>t.classList.remove('on'));
-  btn.classList.add('on');document.getElementById(id).classList.add('on');
-}
+function showM(id){hideM();document.getElementById('o-'+id).classList.add('on')}
+function hideM(){document.querySelectorAll('.overlay').forEach(o=>o.classList.remove('on'))}
+document.querySelectorAll('.overlay').forEach(o=>o.addEventListener('click',e=>{if(e.target===o)hideM()}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hideM()});
+function swTab(btn,id){btn.closest('.mdl-content').querySelectorAll('.tab-btn').forEach(t=>t.classList.remove('on'));btn.closest('.mdl-content').querySelectorAll('.tab-panel').forEach(t=>t.classList.remove('on'));btn.classList.add('on');document.getElementById(id).classList.add('on')}
 </script>
 </body>
 </html>
