@@ -52,7 +52,7 @@
 
   .cards-area{padding:10px 20px 8px;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--bd);}
   .cards-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;}
-  .card{background:var(--bgc);backdrop-filter:blur(8px);border:1px solid var(--glb);border-radius:var(--r);padding:10px 6px 8px;text-align:center;cursor:pointer;transition:all var(--tr);position:relative;overflow:hidden;}
+  .card{background:linear-gradient(135deg,rgba(0,212,170,0.08),rgba(167,139,250,0.06));backdrop-filter:blur(8px);border:1px solid var(--glb);border-radius:var(--r);padding:10px 6px 8px;text-align:center;cursor:pointer;transition:all var(--tr);position:relative;overflow:hidden;}
   .card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ac),var(--pu));opacity:0;transition:opacity var(--tr);}
   .card:hover{background:var(--bgch);border-color:rgba(0,212,170,0.2);}.card:hover::after{opacity:1;}
   .card-icon{width:34px;height:34px;background:var(--acd);border-radius:8px;display:flex;align-items:center;justify-content:center;margin:0 auto 5px;}
