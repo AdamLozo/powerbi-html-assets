@@ -81,7 +81,7 @@
 </head>
 <body>
 <div class="page">
-<nav><div class="nav-brand"><div class="nav-logo"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="nav-title">AVIZ <span>FINANCE</span></div></div><ul class="nav-links"><li><a href="#">Home</a></li><li><a href="#">Our Team</a></li><li><a href="#">About</a></li></ul></nav>
+<nav><div class="nav-brand"><div class="nav-logo"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="nav-title">AVIZ <span>FINANCE</span></div></div><ul class="nav-links"><li><a href="#">Home</a></li><li><a href="#">Our Team</a></li><li><a href="#" onclick="event.preventDefault();openM('about')">About</a></li></ul></nav>
 <div class="hero"><div class="hero-c"><h1>Welcome to Aviz <span>Finance</span></h1><div class="hero-sep"></div><p>Driving Transparency, Efficiency, and Growth &bull; Enabling Insight, Compliance, and Performance</p></div></div>
 <div class="cards-area"><div class="cards-grid">
   <div class="card" onclick="openM('q2o')"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="8" r="2"/><circle cx="20" cy="8" r="2"/><line x1="6" y1="8" x2="9" y2="10"/><line x1="18" y1="8" x2="15" y2="10"/></svg></div><h3>Quote to Order</h3></div>
@@ -181,6 +181,10 @@
   <a href="mailto:support@aviznetworks.com" class="md-lbtn"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,6 12,13 2,6"/></svg>Email: support@aviznetworks.com</a>
   <a href="https://slack.com/intl/en-in/" class="md-lbtn" target="_blank"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Slack Channel</a>
 </div></div></div></div>
+<div class="mo" id="m-about"><div class="md"><div class="md-h"><h2>About Us</h2><button class="md-x" onclick="closeM()">&times;</button></div><div class="md-b">
+  <div class="pi exp"><h4>Mission</h4><div class="pi-t">Maximize shareholder value by efficiently allocating financial resources to profitable investments and strategic initiatives, while proactively managing risks, ensuring compliance with regulatory standards, and maintaining transparent financial reporting practices by fostering innovation, drive sustainable growth, and create long-term value for stakeholders.</div></div>
+  <div class="pi exp"><h4>Vision</h4><div class="pi-t">Become a strategic partner within the organization, actively contributing to decision-making processes and driving value creation. Be a <strong>catalyst</strong> to elevate organization&rsquo;s ability to achieve financial excellence through data driven best-in-class methodologies, tools, and talent, to capture strategic edge in the market, in parallel, fostering a culture of accountability and integrity.</div></div>
+</div></div></div>
 
 <script>
 function openM(id){closeM();document.getElementById('m-'+id).classList.add('on');}
