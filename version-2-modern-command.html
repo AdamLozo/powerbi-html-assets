@@ -9,7 +9,7 @@
   :root{--s9:#0f172a;--s8:#1e293b;--s7:#334155;--s5:#64748b;--s3:#cbd5e1;--s1:#f1f5f9;--w:#ffffff;--tl:#0d9488;--tll:#14b8a6;--tg:rgba(13,148,136,0.12);--sf:#f8fafc;--bd:#e2e8f0;--sh:0 1px 6px rgba(15,23,42,0.05);--shh:0 6px 20px rgba(15,23,42,0.1);--r:10px;--tr:0.25s cubic-bezier(0.4,0,0.2,1);}
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{height:100vh;overflow:hidden;font-family:'DM Sans',sans-serif;background:var(--sf);color:var(--s9);-webkit-font-smoothing:antialiased;}
-  .page{display:grid;grid-template-rows:44px auto auto auto 1fr 22px;height:100vh;overflow:hidden;}
+  .page{display:grid;grid-template-rows:44px 132px auto auto 1fr 22px;height:100vh;overflow:hidden;}
   nav{background:var(--w);border-bottom:1px solid var(--bd);padding:0 28px;display:flex;align-items:center;justify-content:space-between;}
   .nav-brand{display:flex;align-items:center;gap:10px;}
   .nav-logo{width:26px;height:26px;background:var(--tl);border-radius:7px;display:flex;align-items:center;justify-content:center;}
@@ -19,14 +19,31 @@
   .nav-links{display:flex;gap:22px;list-style:none;}
   .nav-links a{color:var(--s5);text-decoration:none;font-size:13px;font-weight:500;transition:color var(--tr);}
   .nav-links a:hover{color:var(--tl);}
-  .hero{background:var(--s9);padding:10px 28px;text-align:center;position:relative;overflow:hidden;}
-  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(13,148,136,0.15),transparent 50%),radial-gradient(circle at 80% 20%,rgba(13,148,136,0.1),transparent 50%);}
-  .hero::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);background-size:40px 40px;}
-  .hero-c{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:16px;}
-  .hero h1{font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:var(--w);letter-spacing:-0.5px;}
+
+  .hero{position:relative;overflow:hidden;padding:0 28px;display:flex;align-items:center;justify-content:center;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 80%,rgba(13,148,136,0.18),transparent 50%),radial-gradient(circle at 80% 20%,rgba(13,148,136,0.12),transparent 50%);}
+  .hero-bg{position:absolute;inset:0;overflow:hidden;}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:48px 48px;}
+  .hero-scan{position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(13,148,136,0.06),transparent);animation:scanX 8s ease-in-out infinite;}
+  @keyframes scanX{0%,100%{left:-100%;}50%{left:100%;}}
+  .hero-bars{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:flex-end;justify-content:center;gap:10px;height:100%;padding:0 10%;}
+  .hero-bar{width:18px;background:linear-gradient(to top,rgba(13,148,136,0.12),rgba(13,148,136,0.03));border-radius:3px 3px 0 0;animation:barGrow 3s ease-in-out infinite alternate;}
+  .hero-bar:nth-child(1){height:25%;animation-delay:0s;}
+  .hero-bar:nth-child(2){height:45%;animation-delay:0.3s;}
+  .hero-bar:nth-child(3){height:35%;animation-delay:0.6s;}
+  .hero-bar:nth-child(4){height:60%;animation-delay:0.9s;}
+  .hero-bar:nth-child(5){height:40%;animation-delay:1.2s;}
+  .hero-bar:nth-child(6){height:70%;animation-delay:1.5s;}
+  .hero-bar:nth-child(7){height:50%;animation-delay:1.8s;}
+  .hero-bar:nth-child(8){height:80%;animation-delay:2.1s;}
+  .hero-bar:nth-child(9){height:55%;animation-delay:2.4s;}
+  .hero-bar:nth-child(10){height:65%;animation-delay:2.7s;}
+  @keyframes barGrow{0%{transform:scaleY(1);}100%{transform:scaleY(0.6);}}
+  .hero-c{position:relative;z-index:1;text-align:center;}
+  .hero h1{font-family:'Outfit',sans-serif;font-size:28px;font-weight:800;color:var(--w);letter-spacing:-0.5px;margin-bottom:6px;}
   .hero h1 span{background:linear-gradient(135deg,var(--tll),#67e8f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
-  .hero-sep{width:1px;height:16px;background:rgba(255,255,255,0.15);}
-  .hero p{color:var(--s3);font-size:12px;font-weight:300;}
+  .hero p{color:var(--s3);font-size:13px;font-weight:300;}
+
   .cards-area{padding:10px 20px 8px;}
   .cards-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;}
   .card{background:var(--w);border:1px solid var(--bd);border-radius:var(--r);padding:10px 6px 8px;text-align:center;cursor:pointer;transition:all var(--tr);position:relative;overflow:hidden;}
@@ -82,7 +99,14 @@
 <body>
 <div class="page">
 <nav><div class="nav-brand"><div class="nav-logo"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="nav-title">AVIZ <span>FINANCE</span></div></div><ul class="nav-links"><li><a href="#">Home</a></li><li><a href="#" onclick="event.preventDefault();openM('team')">Our Team</a></li><li><a href="#" onclick="event.preventDefault();openM('about')">About</a></li></ul></nav>
-<div class="hero"><div class="hero-c"><h1>Welcome to Aviz <span>Finance</span></h1><div class="hero-sep"></div><p>Driving Transparency, Efficiency, and Growth &bull; Enabling Insight, Compliance, and Performance</p></div></div>
+<div class="hero" style="background:var(--s9);">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <div class="hero-scan"></div>
+    <div class="hero-bars"><div class="hero-bar"></div><div class="hero-bar"></div><div class="hero-bar"></div><div class="hero-bar"></div><div class="hero-bar"></div><div class="hero-bar"></div><div class="hero-bar"></div><div class="hero-bar"></div><div class="hero-bar"></div><div class="hero-bar"></div></div>
+  </div>
+  <div class="hero-c"><h1>Welcome to Aviz <span>Finance</span></h1><p>Driving Transparency, Efficiency, and Growth &bull; Enabling Insight, Compliance, and Performance</p></div>
+</div>
 <div class="cards-area"><div class="cards-grid">
   <div class="card" onclick="openM('q2o')"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="8" r="2"/><circle cx="20" cy="8" r="2"/><line x1="6" y1="8" x2="9" y2="10"/><line x1="18" y1="8" x2="15" y2="10"/></svg></div><h3>Quote to Order</h3></div>
   <div class="card" onclick="openM('dash')"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="6" width="4" height="14" rx="1"/><rect x="17" y="2" width="4" height="18" rx="1"/></svg></div><h3>Reporting Dashboards</h3></div>

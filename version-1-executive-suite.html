@@ -9,7 +9,7 @@
   :root{--navy:#1a2744;--navy-light:#2c3e5a;--cream:#faf8f4;--cream-dark:#f0ece4;--gold:#c4973b;--gold-light:#d4af5c;--text:#2d2d2d;--text-muted:#6b6b6b;--white:#ffffff;--border:#e2ddd4;--shadow:0 2px 10px rgba(26,39,68,0.06);--shadow-hover:0 6px 20px rgba(26,39,68,0.12);--r:10px;--tr:0.25s cubic-bezier(0.4,0,0.2,1);}
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{height:100vh;overflow:hidden;font-family:'Source Sans 3',sans-serif;background:var(--cream);color:var(--text);-webkit-font-smoothing:antialiased;}
-  .page{display:grid;grid-template-rows:44px auto auto auto 1fr 22px;height:100vh;overflow:hidden;}
+  .page{display:grid;grid-template-rows:44px 132px auto auto 1fr 22px;height:100vh;overflow:hidden;}
   nav{background:var(--navy);padding:0 28px;display:flex;align-items:center;justify-content:space-between;z-index:10;}
   .nav-brand{display:flex;align-items:center;gap:10px;}
   .nav-logo{width:26px;height:26px;background:var(--gold);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:700;color:var(--navy);font-size:13px;}
@@ -17,12 +17,29 @@
   .nav-links{display:flex;gap:22px;list-style:none;}
   .nav-links a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:13px;font-weight:500;transition:color var(--tr);}
   .nav-links a:hover{color:var(--gold-light);}
-  .hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 50%,#3a5278 100%);padding:10px 28px;text-align:center;position:relative;overflow:hidden;}
-  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(196,151,59,0.12),transparent 60%);}
-  .hero-c{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:16px;}
-  .hero h1{font-family:'Playfair Display',serif;color:var(--white);font-size:20px;font-weight:700;letter-spacing:1px;}
-  .hero-sep{width:1px;height:16px;background:rgba(255,255,255,0.2);}
-  .hero p{color:rgba(255,255,255,0.7);font-size:12px;font-weight:300;}
+
+  .hero{position:relative;overflow:hidden;padding:0 28px;display:flex;align-items:center;justify-content:center;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(196,151,59,0.15),transparent 60%),radial-gradient(ellipse at 70% 60%,rgba(196,151,59,0.08),transparent 50%);}
+  .hero-bg{position:absolute;inset:0;overflow:hidden;}
+  .hero-line{position:absolute;bottom:20%;left:0;width:200%;height:60px;opacity:0.12;}
+  .hero-line path{stroke:var(--gold);stroke-width:1.5;fill:none;stroke-dasharray:8 4;}
+  .hero-line.l1{animation:drift 18s linear infinite;}
+  .hero-line.l2{bottom:35%;animation:drift 24s linear infinite reverse;opacity:0.07;}
+  .hero-line.l3{bottom:55%;animation:drift 30s linear infinite;opacity:0.05;}
+  @keyframes drift{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .hero-tick{position:absolute;font-family:"Playfair Display",serif;font-size:11px;color:var(--gold);opacity:0;animation:tickFade 6s ease-in-out infinite;}
+  .hero-tick:nth-child(1){top:18%;left:8%;animation-delay:0s;}
+  .hero-tick:nth-child(2){top:65%;right:12%;animation-delay:2s;}
+  .hero-tick:nth-child(3){top:30%;right:25%;animation-delay:4s;}
+  .hero-tick:nth-child(4){bottom:20%;left:20%;animation-delay:1s;}
+  .hero-tick:nth-child(5){top:50%;left:40%;animation-delay:3s;}
+  @keyframes tickFade{0%,100%{opacity:0;transform:translateY(4px);}30%,70%{opacity:0.18;transform:translateY(0);}}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(196,151,59,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(196,151,59,0.04) 1px,transparent 1px);background-size:60px 60px;}
+  .hero-c{position:relative;z-index:1;text-align:center;}
+  .hero h1{font-family:'Playfair Display',serif;color:var(--white);font-size:28px;font-weight:700;letter-spacing:2px;margin-bottom:6px;}
+  .hero-rule{width:60px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:6px auto;}
+  .hero p{color:rgba(255,255,255,0.7);font-size:13px;font-weight:300;letter-spacing:0.5px;}
+
   .cards-area{padding:10px 20px 8px;}
   .cards-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;}
   .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:10px 6px 8px;text-align:center;cursor:pointer;transition:all var(--tr);box-shadow:var(--shadow);}
@@ -78,7 +95,16 @@
 <body>
 <div class="page">
 <nav><div class="nav-brand"><div class="nav-logo">A</div><div class="nav-title">Aviz Finance</div></div><ul class="nav-links"><li><a href="#">Home</a></li><li><a href="#" onclick="event.preventDefault();openM('team')">Our Team</a></li><li><a href="#" onclick="event.preventDefault();openM('about')">About</a></li></ul></nav>
-<div class="hero"><div class="hero-c"><h1>WELCOME TO AVIZ FINANCE</h1><div class="hero-sep"></div><p>Driving Transparency, Efficiency, and Growth &bull; Enabling Insight, Compliance, and Performance</p></div></div>
+<div class="hero" style="background:linear-gradient(135deg,var(--navy) 0%,var(--navy-light) 50%,#3a5278 100%);">
+  <div class="hero-bg">
+    <div class="hero-grid"></div>
+    <svg class="hero-line l1" viewBox="0 0 2400 60" preserveAspectRatio="none"><path d="M0,40 Q100,10 200,30 T400,20 T600,35 T800,15 T1000,30 T1200,40 T1400,10 T1600,25 T1800,35 T2000,20 T2200,30 T2400,15"/></svg>
+    <svg class="hero-line l2" viewBox="0 0 2400 60" preserveAspectRatio="none"><path d="M0,20 Q150,45 300,25 T600,40 T900,15 T1200,35 T1500,20 T1800,40 T2100,25 T2400,35"/></svg>
+    <svg class="hero-line l3" viewBox="0 0 2400 60" preserveAspectRatio="none"><path d="M0,35 Q120,10 240,28 T480,18 T720,38 T960,12 T1200,30 T1440,22 T1680,38 T1920,15 T2160,32 T2400,25"/></svg>
+    <div class="hero-tick">$</div><div class="hero-tick">%</div><div class="hero-tick">ARR</div><div class="hero-tick">Q4</div><div class="hero-tick">P&amp;L</div>
+  </div>
+  <div class="hero-c"><h1>WELCOME TO AVIZ FINANCE</h1><div class="hero-rule"></div><p>Driving Transparency, Efficiency, and Growth &bull; Enabling Insight, Compliance, and Performance</p></div>
+</div>
 <div class="cards-area"><div class="cards-grid">
   <div class="card" onclick="openM('q2o')"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="8" r="2"/><circle cx="20" cy="8" r="2"/><line x1="6" y1="8" x2="9" y2="10"/><line x1="18" y1="8" x2="15" y2="10"/></svg></div><h3>Quote to Order</h3></div>
   <div class="card" onclick="openM('dash')"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="6" width="4" height="14" rx="1"/><rect x="17" y="2" width="4" height="18" rx="1"/></svg></div><h3>Reporting Dashboards</h3></div>

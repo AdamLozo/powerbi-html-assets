@@ -9,7 +9,7 @@
   :root{--bg:#fefcf9;--bgw:#faf5ee;--bgc:#ffffff;--tr:#b45330;--trl:#d4724e;--trg:rgba(180,83,48,0.08);--ch:#2c2c2c;--gr:#555555;--mu:#8a8580;--bd:#e8e2d9;--bdl:#f0ebe4;--w:#ffffff;--sh:0 2px 10px rgba(44,44,44,0.04);--shh:0 6px 20px rgba(44,44,44,0.09);--r:10px;--t:0.25s ease;}
   *{margin:0;padding:0;box-sizing:border-box;}
   html,body{height:100vh;overflow:hidden;font-family:'Hanken Grotesk',sans-serif;background:var(--bg);color:var(--ch);-webkit-font-smoothing:antialiased;}
-  .page{display:grid;grid-template-rows:44px auto auto auto 1fr 22px;height:100vh;overflow:hidden;}
+  .page{display:grid;grid-template-rows:44px 132px auto auto 1fr 22px;height:100vh;overflow:hidden;}
   nav{display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:var(--bg);border-bottom:1px solid var(--bdl);}
   .nav-brand{display:flex;align-items:center;gap:8px;}
   .nav-logo{width:26px;height:26px;background:var(--tr);border-radius:6px;display:flex;align-items:center;justify-content:center;}
@@ -18,11 +18,24 @@
   .nav-links{display:flex;gap:22px;list-style:none;}
   .nav-links a{color:var(--mu);text-decoration:none;font-size:13px;font-weight:500;transition:color var(--t);}
   .nav-links a:hover{color:var(--tr);}
-  .hero{padding:12px 28px;text-align:center;background:linear-gradient(180deg,var(--bgw) 0%,var(--bg) 100%);}
-  .hero-c{display:flex;align-items:center;justify-content:center;gap:16px;}
-  .hero h1{font-family:'Fraunces',serif;font-size:20px;font-weight:700;line-height:1.2;}
-  .hero-sep{width:1px;height:16px;background:var(--bd);}
-  .hero p{font-size:12px;color:var(--gr);}
+
+  .hero{position:relative;overflow:hidden;padding:0 28px;display:flex;align-items:center;justify-content:center;}
+  .hero-bg{position:absolute;inset:0;overflow:hidden;}
+  .hero-circle{position:absolute;border-radius:50%;border:1px solid rgba(180,83,48,0.1);animation:circleRise 12s ease-in-out infinite;}
+  .hero-circle:nth-child(1){width:80px;height:80px;bottom:-40px;left:15%;animation-delay:0s;}
+  .hero-circle:nth-child(2){width:50px;height:50px;bottom:-25px;left:35%;animation-delay:2s;}
+  .hero-circle:nth-child(3){width:100px;height:100px;bottom:-50px;right:20%;animation-delay:4s;}
+  .hero-circle:nth-child(4){width:40px;height:40px;bottom:-20px;right:35%;animation-delay:6s;}
+  .hero-circle:nth-child(5){width:70px;height:70px;bottom:-35px;left:55%;animation-delay:8s;}
+  @keyframes circleRise{0%,100%{transform:translateY(0);opacity:0;}20%{opacity:0.4;}80%{opacity:0.15;}95%{transform:translateY(-160px);opacity:0;}}
+  .hero-shimmer{position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(180,83,48,0.04) 50%,transparent 70%);animation:shimmer 6s ease-in-out infinite;}
+  @keyframes shimmer{0%,100%{transform:translateX(-100%);}50%{transform:translateX(100%);}}
+  .hero-line-h{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--tr),transparent);opacity:0.2;}
+  .hero-c{position:relative;z-index:1;text-align:center;}
+  .hero h1{font-family:'Fraunces',serif;font-size:28px;font-weight:700;line-height:1.2;margin-bottom:6px;}
+  .hero-rule{width:40px;height:2px;background:var(--tr);margin:6px auto;border-radius:1px;}
+  .hero p{font-size:13px;color:var(--gr);}
+
   .cards-area{padding:10px 20px 8px;}
   .cards-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;}
   .card{background:var(--bgc);border:1px solid var(--bd);border-radius:var(--r);padding:10px 6px 8px;text-align:center;cursor:pointer;transition:all var(--t);}
@@ -77,7 +90,14 @@
 <body>
 <div class="page">
 <nav><div class="nav-brand"><div class="nav-logo"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="nav-title">Aviz Finance</div></div><ul class="nav-links"><li><a href="#">Home</a></li><li><a href="#" onclick="event.preventDefault();openM('team')">Our Team</a></li><li><a href="#" onclick="event.preventDefault();openM('about')">About</a></li></ul></nav>
-<div class="hero"><div class="hero-c"><h1>Welcome to Aviz Finance</h1><div class="hero-sep"></div><p>Driving Transparency, Efficiency, and Growth &bull; Enabling Insight, Compliance, and Performance</p></div></div>
+<div class="hero" style="background:linear-gradient(180deg,var(--bgw) 0%,var(--bg) 100%);">
+  <div class="hero-bg">
+    <div class="hero-circle"></div><div class="hero-circle"></div><div class="hero-circle"></div><div class="hero-circle"></div><div class="hero-circle"></div>
+    <div class="hero-shimmer"></div>
+    <div class="hero-line-h"></div>
+  </div>
+  <div class="hero-c"><h1>Welcome to Aviz Finance</h1><div class="hero-rule"></div><p>Driving Transparency, Efficiency, and Growth &bull; Enabling Insight, Compliance, and Performance</p></div>
+</div>
 <div class="cards-area"><div class="cards-grid">
   <div class="card" onclick="openM('q2o')"><div class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="8" r="2"/><circle cx="20" cy="8" r="2"/><line x1="6" y1="8" x2="9" y2="10"/><line x1="18" y1="8" x2="15" y2="10"/></svg></div><h3>Quote to Order</h3></div>
   <div class="card" onclick="openM('dash')"><div class="card-icon"><svg viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="8" rx="1"/><rect x="10" y="6" width="4" height="14" rx="1"/><rect x="17" y="2" width="4" height="18" rx="1"/></svg></div><h3>Reporting Dashboards</h3></div>
